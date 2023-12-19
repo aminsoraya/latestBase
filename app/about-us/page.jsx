@@ -23,7 +23,7 @@ export default function Page() {
               fill
             />
           </div>
-          <div className={`col-lg-8 col-md-12 ${styles.content}`}>
+          <div className={`col-lg-8 col-md-12 ${styles.content} `}>
             <h2>About Us</h2>
             <p>
               United Auto Sales Ltd would be honored to have you as a friend and
