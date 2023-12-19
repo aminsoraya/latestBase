@@ -6,6 +6,7 @@ import { useAppStore } from "@/hooks/store";
 import Container from "@/components/shared/container";
 import Button from "@/components/shared/button";
 import Timeworks from "@/components/shared/footer/bussniessHours";
+import Address from "@/components/shared/footer/address";
 
 export default function Page() {
   const { setCurrentMenu } = useAppStore();
@@ -18,12 +19,19 @@ export default function Page() {
     <div className={styles.main}>
       <Container>
         <div className="row p-0 w-100">
-          <div className={`col-lg-5 ${styles.img} d-none d-xl-block`}>
+          <div
+            className={`col-lg-4 col-md-6 col-xs-12 ${styles.img} `}
+          >
             <h2>Contact Us</h2>
             <Image src="/img/Contactus.jpg" objectFit="contain" fill />
           </div>
-          <div className={`col-lg-4 ${styles.timeWorks}`}>
+          <div className={`col-lg-4 col-md-6 col-xs-12 ${styles.timeWorks}`}>
             <Timeworks />
+          </div>
+          <div className={`col-lg-4 col-md-6 col-xs-12`}>
+            <div className={styles.address}>
+              <Address />
+            </div>
           </div>
         </div>
       </Container>

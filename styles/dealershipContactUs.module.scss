@@ -22,4 +22,14 @@
     flex-direction: column;
     justify-content: center;
   }
+  .address{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 200px;
+    background-color: $yellow-dark;
+    height: 100px;
+    padding-left: 20px;
+    padding-top: 20px;
+  }
 }

@@ -2,9 +2,9 @@ import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/footer.module.scss";
 import { useMemo } from "react";
 import SubmitForm from "./form";
-import { GoTriangleRight } from "react-icons/go";
 import Container from "../container";
-import Timeworks from "@/components/shared/footer/bussniessHours"
+import Timeworks from "@/components/shared/footer/bussniessHours";
+import Address from "./address";
 
 const Footer = () => {
   let { dealerData } = useAppStore();
@@ -16,30 +16,7 @@ const Footer = () => {
           <div className="col-xs-12 col-lg-4">
             <div className={styles.contactUs}>
               <h2>Contact Us</h2>
-              <div className={styles.address}>
-                <span>
-                  <GoTriangleRight />
-                </span>
-                <span>Address:</span>
-                <span>
-                  {dealerData?.business_street}
-                  {", "}
-                  {dealerData?.business_city?.city}
-                  {", "}
-                  {dealerData?.business_city?.Province?.province === "Alberta"
-                    ? "Ab"
-                    : dealerData?.business_city?.Province?.province}
-                  {", "}
-                  {dealerData?.business_postal}
-                </span>
-              </div>
-              <div className={styles.address}>
-                <span>
-                  <GoTriangleRight />
-                </span>
-                <span>Phone Number:</span>
-                <span>{dealerData?.business_phone}</span>
-              </div>
+              <Address />
               <div>
                 <iframe
                   allow="geolocation"
