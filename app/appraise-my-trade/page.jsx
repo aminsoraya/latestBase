@@ -5,13 +5,16 @@ import Image from "next/image";
 import Slider from "@/components/home/latestProduct/slider";
 import { useEffect } from "react";
 import { useAppStore } from "@/hooks/store";
-import PersonalInformationForm from "./form"
+import PersonalInformationForm from "./form";
 
 const AppraiseMyTrade = () => {
-  const { setCurrentMenu } = useAppStore();
+  const { setCurrentMenu, baseImageUrl, baseUrl, domain } = useAppStore();
+
+  //set current menu(active menu)
   useEffect(() => {
     setCurrentMenu({ currentMenu: "/appraise-my-trade" });
   }, []);
+
   return (
     <div className={`${styles.main} pt-[100px]`}>
       <Container>

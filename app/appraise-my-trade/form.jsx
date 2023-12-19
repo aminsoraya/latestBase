@@ -1,4 +1,7 @@
 import Button from "@/components/shared/button";
+import DynamicDropdown, {
+  DropDownType,
+} from "@/components/shared/dynamicDropdown";
 import Input from "@/components/shared/input";
 import TextArea from "@/components/shared/textArea";
 import Vehicle from "@/components/shared/vehicle";
@@ -42,17 +45,15 @@ const PersonalInformationForm = () => {
           <Input placeholder="Trim" type="email" className="input-trasparent" />
         </div>
         <div className="col-6 mt-2">
-          <Input
+          <DynamicDropdown
             placeholder="Body Style"
-            type="tel"
-            className="input-trasparent"
+            type={DropDownType.bodyStyle}
           />
         </div>
         <div className="col-6 mt-2">
-          <Input
+          <DynamicDropdown
             placeholder="Transmission"
-            type="email"
-            className="input-trasparent"
+            type={DropDownType.transmission}
           />
         </div>
         <div className="col-6 mt-2">
@@ -92,7 +93,7 @@ const PersonalInformationForm = () => {
             className="input-trasparent pr-2"
           />
         </div>
-        <div className="col-6 mt-2" style={{height:"40px"}}>
+        <div className="col-6 mt-2" style={{ height: "40px" }}>
           <Button>Submit</Button>
         </div>
       </div>
