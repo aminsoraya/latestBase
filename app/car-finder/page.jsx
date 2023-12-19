@@ -5,14 +5,14 @@ import Image from "next/image";
 import Slider from "@/components/home/latestProduct/slider";
 import { useEffect } from "react";
 import { useAppStore } from "@/hooks/store";
-import PersonalInformationForm from "../../components/appraiseMyTrade/form";
+import PersonalInformationForm from "../../components/carFinder/form";
 
 const AppraiseMyTrade = () => {
   const { setCurrentMenu, baseImageUrl, baseUrl, domain } = useAppStore();
 
   //set current menu(active menu)
   useEffect(() => {
-    setCurrentMenu({ currentMenu: "/appraise-my-trade" });
+    setCurrentMenu({ currentMenu: "/car-finder" });
   }, []);
 
   return (
@@ -21,21 +21,23 @@ const AppraiseMyTrade = () => {
         <div className="container">
           <div className="row">
             <div className={`${styles.head} col-lg-6 col-md-12`}>
-              <h2>Appraise My Trade</h2>
+              <h2>Car Finder</h2>
               <p>
-                Are you trading in a car ? Perhaps you are just looking to sell
-                a car in Langley? Either way, the team at United Auto Sales Ltd
-                can help and you can get started right now by filling out the
-                form that we have provided for you below. We just want to hear a
-                little bit about yourself and the car you are looking to sell
-                and be sure to get the most precise value for your car.
+                With our car finder division, we devote the time and resources
+                necessary to locate the ideal quality vehicle that you would
+                seek out on your own. This is a fantastic service for busy
+                individuals, families, or corporations who are looking for a
+                specific make and model or type of vehicle but don’t have the
+                time to go from car to car looking for it. When you’re shopping
+                for a vehicle, we also have a huge selection of high-quality
+                used vehicles at the dealership for you to consider.
               </p>
             </div>
             <div className="col-lg-6 col-md-12">
               <div className={styles.img}>
                 <Image
                   fill
-                  src="/img/how-to-trade-in-a-car-3-780x443-1.jpg"
+                  src="/img/ford_mustang_mach_1_2021_4k-HD-1-1024x576.jpg"
                   sizes="(max-width: 780px) 100vw, 780px"
                 />
               </div>

@@ -27,7 +27,7 @@ let links = [
       },
       {
         text: "Car Finder",
-        link: "//",
+        link: "/car-finder",
       },
     ],
   },
@@ -88,7 +88,7 @@ const Menu = () => {
     };
   }, []);
 
-  console.log("currentMenu ", currentMenu);
+
   return (
     <Container className={containerStyles.absoloute}>
       <div className={styles.main}>
