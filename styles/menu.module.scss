@@ -15,9 +15,11 @@
 .active::after {
   @include underlines();
   width: 100% !important;
-  
-}.active{
-  >a{color: $yellow-normal !important;}
+}
+.active {
+  > a {
+    color: $yellow-normal !important;
+  }
 }
 
 .main {
@@ -60,9 +62,10 @@
       }
       .submenu {
         background-color: $gray-normal;
-        position: fixed;
+        position: absolute;
+        margin-left: -30px;
         display: none;
-
+        margin-top: 5px;
         li {
           height: 40px;
           padding-right: 15px;
@@ -70,7 +73,8 @@
           align-items: center;
           > a {
             font-weight: 300;
-            font-size: 14px;
+            font-size: 13px;
+            white-space: nowrap;
           }
           &:hover > a {
             color: $yellow-normal;
