@@ -1,0 +1,48 @@
+@import "colors";
+.main {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: $gray-normal;
+  color: $white;
+  padding: 10px 10px 10px 30px;
+
+  .colImage {
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+  .colText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    p {
+      text-align: justify;
+      font-weight: 200;
+      font-size: 12px !important;
+    }
+    button {
+      background: $yellow-normal;
+      width: 200px;
+      height: 40px;
+      border: none;
+    }
+  }
+  .divText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px !important;
+    p {
+      font-size: 13px;
+      min-height: 100px;
+      line-height: 20px;
+    }
+    .button {
+      width: 220px;
+      height: 40px;
+    }
+  }
+}

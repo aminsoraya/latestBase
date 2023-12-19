@@ -1,0 +1,52 @@
+@import "colors";
+.main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: $gray-pure;
+  width: 100%;
+  .filter_container {
+    display: flex;
+    flex-direction: column;
+    max-height: 150px;
+    font-size: small;
+    background-color: #f9fafb; /* Replace with the actual color code for gray-50 */
+    color: #000; /* Replace with the actual color code for black */
+    width: 100%;
+    padding-left: 1px;
+    padding-right: 1px;
+    overflow-y: auto;
+    .filter {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem; /* Adjust the gap size as needed */
+      width: 100%;
+      justify-content: flex-start;
+      min-height: 30px;
+      font-size: small;
+      padding-left: 10px;
+      input{
+        width: unset;
+        height: unset;
+      }
+    }
+  }
+  .selected {
+    display: flex;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem; /* Adjust the gap size as needed */
+    position: relative;
+    background-color: #fff; /* Replace with the actual color code for white */
+    height: 48px; /* Adjust the height as needed */
+    color: #000; /* Replace with the actual color code for black */
+
+    .trash {
+      position: absolute;
+      right: 0.5rem; /* Adjust the value as needed */
+      color: #e53e3e;
+    }
+  }
+}

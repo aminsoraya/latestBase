@@ -1,0 +1,179 @@
+@import "colors";
+
+@mixin underlines() {
+  z-index: 1000;
+  position: absolute;
+  background-color: $yellow-normal;
+  top: 0;
+  margin-top: 25px;
+  height: 3px;
+  content: "";
+  opacity: 0.4;
+  left: 0;
+}
+
+.active::after {
+  @include underlines();
+  width: 100% !important;
+  
+}.active{
+  >a{color: $yellow-normal !important;}
+}
+
+.main {
+  left: 0;
+  color: $white;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+
+  .menu {
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+    letter-spacing: 1px;
+    list-style: none;
+    width: 600px;
+    position: relative;
+    height: 100%;
+    .item {
+      position: relative;
+      height: 30px;
+
+      &:hover {
+        cursor: pointer;
+      }
+      &:hover > a {
+        color: $yellow-normal;
+      }
+      &::after {
+        @include underlines();
+        transition: 0.3s;
+        width: 0;
+      }
+      &:hover::after {
+        @include underlines();
+        width: 100%;
+      }
+      .submenu {
+        background-color: $gray-normal;
+        position: fixed;
+        display: none;
+
+        li {
+          height: 40px;
+          padding-right: 15px;
+          display: flex;
+          align-items: center;
+          > a {
+            font-weight: 300;
+            font-size: 14px;
+          }
+          &:hover > a {
+            color: $yellow-normal;
+          }
+        }
+      }
+      &:hover .submenu {
+        display: block;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
+    width: 160px;
+    > svg:hover {
+      color: -normal;
+      cursor: pointer;
+    }
+  }
+  .logo {
+    color: $yellow-normal;
+    display: flex;
+    align-items: center;
+  }
+  .burger {
+    display: none;
+  }
+}
+@media (min-width: 1000px) and (max-width: 1200px) {
+  .menu {
+    font-size: 12px !important;
+    width: 450px !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .menu {
+    display: none !important;
+  }
+  .burger {
+    height: 80px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10000;
+    > svg {
+      font-size: 25px;
+    }
+    > .bur_menu {
+      width: 180px;
+      top: 0;
+      margin-top: 50px;
+      display: none;
+      flex-direction: column;
+      background-color: $gray-normal;
+      position: absolute;
+      left: 0;
+      > a {
+        list-style: none;
+      }
+      > .bur_item {
+        list-style: none !important;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        padding-right: 20px;
+        padding-left: 20px;
+        display: flex;
+        position: relative;
+        cursor: pointer;
+        &:hover a {
+          color: $yellow-normal !important;
+        }
+        > a {
+          font-weight: 700;
+          color: white;
+          text-decoration: none;
+        }
+        &::after {
+          position: absolute;
+          @include underlines();
+          width: 0;
+          transition: 0.4s;
+          top: 5px;
+        }
+        &:hover::after {
+          @include underlines();
+          width: 100%;
+          top: 5px;
+        }
+      }
+    }
+  }
+  .logo {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,74 @@
+@import "colors";
+.main {
+  background: $gray-normal;
+  position: relative;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
+  color:$white;
+  .timeWorks {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    .timeWork {
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .day {
+        width: 100px;
+      }
+    }
+  }
+  .contactUs {
+    display: flex;
+    flex-direction: column;
+    .address {
+      font-weight: 400;
+      height: 30px;
+      display: flex;
+      font-size: 13px;
+    }
+  }
+}
+.form {
+  width: 100%;
+ 
+  background: #4a4949;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  .submit {
+    background: #b29952;
+    height: 40px;
+    width: 100px;
+    outline: none;
+    border: none;
+  }
+  .h4 {
+    font-size: 18px;
+  }
+  input {
+    width: 100%;
+    border: none;
+    background: white;
+    height: 40px;
+    outline: none;
+    color: black;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  textarea {
+    height: 150px;
+    width: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    color: black;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
