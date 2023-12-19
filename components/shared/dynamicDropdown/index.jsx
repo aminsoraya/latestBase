@@ -80,7 +80,10 @@ const DynamicDropdown = (props) => {
   }, []);
 
   useEffect(() => {
-    selected && setIsOpen(false);
+    if (selected) {
+      setIsOpen(false);
+      props.callback(selected.key)
+    }
   }, [selected]);
 
   return (
