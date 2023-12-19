@@ -3,7 +3,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import Input from "../input";
 import Loading from "../loading";
 import dynamic from "next/dynamic";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export const DropDownType = {
   transmission: "transmission",
@@ -41,21 +41,22 @@ const ExteriorComponent = dynamic(() => import("./exteriorColors"), {
 
 const DynamicDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(undefined);
 
   const getItems = () => {
     switch (props.type) {
       case DropDownType.transmission:
-        return <TransmissionComponent />;
+        return <TransmissionComponent callback={(item) => setSelected(item)} />;
       case DropDownType.bodyStyle:
-        return <BodyStyleComponent />;
+        return <BodyStyleComponent callback={(item) => setSelected(item)} />;
       case DropDownType.years:
-        return <YearsComponent />;
+        return <YearsComponent callback={(item) => setSelected(item)} />;
       case DropDownType.driveTrain:
-        return <DriveTrainComponent />;
+        return <DriveTrainComponent callback={(item) => setSelected(item)} />;
       case DropDownType.conditions:
-        return <ConditionsComponent />;
+        return <ConditionsComponent callback={(item) => setSelected(item)} />;
       case DropDownType.exteriorColors:
-        return <ExteriorComponent />;
+        return <ExteriorComponent callback={(item) => setSelected(item)} />;
     }
   };
 
@@ -78,6 +79,10 @@ const DynamicDropdown = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    selected && setIsOpen(false);
+  }, [selected]);
+
   return (
     <>
       <div className={styles.inputContainer} ref={divRef}>
@@ -86,6 +91,7 @@ const DynamicDropdown = (props) => {
             placeholder={props.placeholder}
             className="input-trasparent"
             onClick={() => setIsOpen((state) => !state)}
+            value={selected?.alias}
           />
           <span>
             <FaAngleDown />

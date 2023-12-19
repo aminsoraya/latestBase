@@ -1,13 +1,17 @@
 import useYears from "@/hooks/actions/years";
 import style from "@/styles/dynamicDropDown.module.scss";
 
-const Transmission = () => {
+const Transmission = (props) => {
   const { years } = useYears();
   return (
     <>
-      {years?.map(({value,label}, index) => {
+      {years?.map(({ value, label }, index) => {
         return (
-          <span key={index} className={style.items}>
+          <span
+            key={index}
+            onClick={() => props.callback({ key: value, alias: label })}
+            className={style.items}
+          >
             {label}
           </span>
         );

@@ -4,7 +4,7 @@ import Loading from "../loading";
 import { useVehicles } from "@/hooks/actions/vehicles";
 import style from "@/styles/dynamicDropDown.module.scss";
 
-const BodyStyle = () => {
+const BodyStyle = (props) => {
   const { baseUrl } = useAppStore();
   let { data, isLoading } = useSWR(`${baseUrl}/api/bodystyles`, useVehicles);
 
@@ -14,7 +14,11 @@ const BodyStyle = () => {
       {data &&
         data.map(({ id, name }, index) => {
           return (
-            <span key={index} className={style.items}>
+            <span
+              key={index}
+              onClick={() => props.callback({ key: id, alias: name })}
+              className={style.items}
+            >
               {name}
             </span>
           );

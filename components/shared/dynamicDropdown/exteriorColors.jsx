@@ -4,17 +4,24 @@ import Loading from "../loading";
 import { useVehicles } from "@/hooks/actions/vehicles";
 import style from "@/styles/dynamicDropDown.module.scss"
 
-const Transmission = () => {
+const Transmission = (props) => {
   const { baseUrl } = useAppStore();
   let { data, isLoading } = useSWR(`${baseUrl}/api/colors`, useVehicles);
 
-  console.log("colors ",data)
   return (
     <>
       {isLoading && <Loading />}
       {data &&
         data.map(({ id, name }, index) => {
-          return <span key={index} className={style.items}>{name}</span>;
+          return (
+            <span
+              onClick={() => props.callback({ key: id, alias: name })}
+              key={index}
+              className={style.items}
+            >
+              {name}
+            </span>
+          );
         })}
     </>
   );

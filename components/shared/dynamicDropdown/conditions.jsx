@@ -1,12 +1,16 @@
 import style from "@/styles/dynamicDropDown.module.scss";
 import { conditions } from "@/hooks/actions/conditions";
 
-const Transmission = () => {
+const Transmission = (props) => {
   return (
     <>
       {conditions.map(({ label, value }, index) => {
         return (
-          <span key={index} className={style.items}>
+          <span
+            key={index}
+            onClick={() => props.callback({ key: value, alias: label })}
+            className={style.items}
+          >
             {label}
           </span>
         );
