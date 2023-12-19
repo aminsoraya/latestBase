@@ -49,15 +49,15 @@ let links = [
     sub: [
       {
         text: "About Us",
-        link: "//",
+        link: "/about-us",
       },
       {
         text: "Contact Us",
-        link: "//",
+        link: "/contact-us",
       },
       {
         text: "Book Appointment",
-        link: "//",
+        link: "/book-appointment",
       },
     ],
   },

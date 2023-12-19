@@ -38,7 +38,7 @@ a {
 .input-trasparent {
   font-weight: bold !important;
   background: #2e2e2e !important;
-  border: 1px solid white !important;
+  border: 1px solid white;
   color: white !important;
 }
 .react-datepicker-ignore-onclickoutside,
@@ -56,5 +56,5 @@ a {
 input[type="text"]:focus {
   box-shadow: 0 0 3px blue !important;
 
-  border: 3px solid blue !important;
+  border: 1px solid blue !important;
 }
