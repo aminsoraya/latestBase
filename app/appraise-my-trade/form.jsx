@@ -33,7 +33,7 @@ const PersonalInformationForm = () => {
           <Input placeholder="Vin" className="input-trasparent" />
         </div>
         <div className="col-6 mt-2">
-          <Input placeholder="Year" className="input-trasparent" />
+          <DynamicDropdown placeholder="Year" type={DropDownType.years} />
         </div>
         <div className="col-6 mt-2">
           <Input placeholder="Make" type="email" className="input-trasparent" />

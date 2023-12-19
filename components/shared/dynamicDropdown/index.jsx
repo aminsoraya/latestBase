@@ -8,12 +8,18 @@ import { useState } from "react";
 export const DropDownType = {
   transmission: "transmission",
   bodyStyle: "bodystyles",
+  years: "years",
 };
 const TransmissionComponent = dynamic(() => import("./transmission"), {
   ssr: false,
   loading: () => <Loading />,
 });
 const BodyStyleComponent = dynamic(() => import("./bodyStyle"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+
+const YearsComponent = dynamic(() => import("./years"), {
   ssr: false,
   loading: () => <Loading />,
 });
@@ -27,6 +33,8 @@ const DynamicDropdown = (props) => {
         return <TransmissionComponent />;
       case DropDownType.bodyStyle:
         return <BodyStyleComponent />;
+      case DropDownType.years:
+        return <YearsComponent />;
     }
   };
 
