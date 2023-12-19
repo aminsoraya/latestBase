@@ -40,7 +40,7 @@ let links = [
       },
       {
         text: "Finance Calculator",
-        link: "//",
+        link: "/finance-calculator",
       },
     ],
   },

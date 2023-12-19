@@ -9,3 +9,17 @@
   justify-content: center;
   color: white;
 }
+.transparent {
+  background: transparent;
+  border-style: solid;
+  border-color: #b29952;
+  border-width: 1px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  transition: 0.6s;
+  font-size: 13px;
+
+  &:hover{
+    background:#b29952;
+  }
+}

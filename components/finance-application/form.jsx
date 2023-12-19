@@ -4,7 +4,6 @@ import DynamicDropdown, {
 } from "@/components/shared/dynamicDropdown";
 import Input from "@/components/shared/input";
 import TextArea from "@/components/shared/textArea";
-import Vehicle from "@/components/shared/vehicle";
 import { useFormik } from "formik";
 import { mutate } from "swr";
 import { useContactUs } from "@/hooks/actions/contactUs";
@@ -12,8 +11,10 @@ import { toast } from "react-toastify";
 import { useAppStore } from "@/hooks/store";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
-const PersonalInformationForm = () => {
+const FinanceApplicationForm = () => {
+  const [rules, setRules] = useState(false);
   const initialValues = {};
   const { baseUrl, domain } = useAppStore();
   const formik = useFormik({
@@ -114,75 +115,81 @@ const PersonalInformationForm = () => {
           />
         </div>
         <div className="col-12 pt-2 pb-2">
-          <h2>Vehicle Information</h2>
+          <h2>Current Address</h2>
+        </div>
+        <div className="col-12 mt-2 ">
+          <TextArea
+            placeholder="address"
+            className="input-trasparent"
+            name="address"
+            onChange={formik.handleChange}
+            value={formik.values.address}
+          />
         </div>
         <div className="col-6 mt-2">
           <Input
-            placeholder="Vin"
+            placeholder="Postal Code"
             className="input-trasparent"
-            name="vin_number"
+            name="postal-code"
             onChange={formik.handleChange}
-            value={formik.values.vin_number}
+            value={formik.values.postal_code}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="City"
+            className="input-trasparent"
+            name="city"
+            onChange={formik.handleChange}
+            value={formik.values.city}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Province"
+            className="input-trasparent"
+            name="province"
+            onChange={formik.handleChange}
+            value={formik.values.province}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Country"
+            className="input-trasparent"
+            name="province"
+            onChange={formik.handleChange}
+            value={formik.values.province}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Duration Year"
+            className="input-trasparent"
+            name="duration_year"
+            onChange={formik.handleChange}
+            value={formik.values.province}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Duration Month"
+            className="input-trasparent"
+            name="duration_month"
+            onChange={formik.handleChange}
+            value={formik.values.duration_month}
           />
         </div>
         <div className="col-6 mt-2">
           <DynamicDropdown
-            placeholder="Year"
-            type={DropDownType.years}
-            callback={(val) => formik.setFieldValue("year", val)}
+            placeholder="Home Status"
+            type={DropDownType.marital}
+            callback={(val) => formik.setFieldValue("user_marital_status", val)}
           />
         </div>
         <div className="col-6 mt-2">
           <Input
-            placeholder="Make"
-            className="input-trasparent"
-            name="make"
-            onChange={formik.handleChange}
-            value={formik.values.make}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <Input
-            placeholder="Model"
-            className="input-trasparent"
-            name="model"
-            onChange={formik.handleChange}
-            value={formik.values.model}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <Input
-            placeholder="Trim"
-            className="input-trasparent"
-            name="trim"
-            onChange={formik.handleChange}
-            value={formik.values.trim}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <DynamicDropdown
-            placeholder="Body Style"
-            type={DropDownType.bodyStyle}
-            callback={(val) => formik.setFieldValue("bodyStyle", val)}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <DynamicDropdown
-            placeholder="Transmission"
-            type={DropDownType.transmission}
-            callback={(val) => formik.setFieldValue("transmission", val)}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <DynamicDropdown
-            placeholder="Drive Line"
-            type={DropDownType.driveTrain}
-            callback={(val) => formik.setFieldValue("driveLine", val)}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <Input
-            placeholder="Kilometers"
+            placeholder="Monthly Payment"
             type="text"
             className="input-trasparent"
             name="temp_odometer"
@@ -190,9 +197,12 @@ const PersonalInformationForm = () => {
             value={formik.values.temp_odometer}
           />
         </div>
+        <div className="col-12 mt-2 pb-2">
+          <h2>Current Employment</h2>
+        </div>
         <div className="col-6 mt-2">
           <Input
-            placeholder="Fuel Type"
+            placeholder="Type"
             type="text"
             className="input-trasparent"
             name="fuel_type"
@@ -201,35 +211,232 @@ const PersonalInformationForm = () => {
           />
         </div>
         <div className="col-6 mt-2">
-          <DynamicDropdown
-            placeholder="Exterior Colors"
-            type={DropDownType.exteriorColors}
-            callback={(val) => formik.setFieldValue("frk_exterior_color", val)}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <DynamicDropdown
-            placeholder="Condition"
-            type={DropDownType.conditions}
-            callback={(val) => formik.setFieldValue("condition", val)}
-          />
-        </div>
-        <div className="col-6 mt-2">
-          <Vehicle
-            isTransparent={true}
-            callback={(val) => formik.setFieldValue("frk_midv_id", val)}
-          />
-        </div>
-        <div className="col-12 mt-2">
-          <TextArea
-            placeholder="Additional Info"
-            className="input-trasparent pr-2"
-            name="additional_info"
+          <Input
+            placeholder="Employer"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
             onChange={formik.handleChange}
-            value={formik.values.additional_info}
+            value={formik.values.fuel_type}
           />
         </div>
-        <div className="col-6 mt-2" style={{ height: "40px" }}>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Occupation"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Phone"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Gross income"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Duration Year"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Duration Month"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-12 mt-2 ">
+          <TextArea
+            placeholder="address"
+            className="input-trasparent"
+            name="address"
+            onChange={formik.handleChange}
+            value={formik.values.address}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Postal Code"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="City"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Province"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Country"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-12 mt-2 pb-2">
+          <h2>Previous Employment</h2>
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Previous Employer"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Phone"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Duration Year"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Duration Month"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-12 mt-2 pb-2">
+          <h2>Other Infromation</h2>
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Rate Your Credit"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Employer"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Bankruptcy"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Is Co-singer Available"
+            type="text"
+            className="input-trasparent"
+            name="fuel_type"
+            onChange={formik.handleChange}
+            value={formik.values.fuel_type}
+          />
+        </div>
+        <div className="col-12 mt-2 ">
+          <TextArea
+            placeholder="Comment"
+            className="input-trasparent"
+            name="comment"
+            onChange={formik.handleChange}
+            value={formik.values.address}
+          />
+        </div>
+        <div className="col-4 mt-2 ">
+          <Button isTransparent={true}>Advance Search</Button>
+        </div>
+        <div className="col-4 mt-2 ">
+          <Button isTransparent={true}>Value Trade</Button>
+        </div>
+        <div className="col-4 mt-2 ">
+          <Button isTransparent={true}>Car Finder</Button>
+        </div>
+        <div
+          className="col-12 mt-2 pb-2"
+          style={{ display: "flex", alignItems: "center", fontSize: "13px" }}
+        >
+          <input type="checkbox" checked={rules} />
+          <p onClick={() => setRules((state) => !state)}>
+            I agree that by submitting this application, I authorize and give
+            this dealership, as well as any potential financing source this
+            dealership presents this application to, my consent to obtain my
+            credit report from any credit reporting agency used to complete an
+            investigation of my credit.{" "}
+          </p>
+        </div>
+        <div className="col-12 mt-2" style={{ height: "40px" }}>
           <Button type="submit">Submit</Button>
         </div>
       </div>
@@ -237,4 +444,4 @@ const PersonalInformationForm = () => {
   );
 };
 
-export default PersonalInformationForm;
+export default FinanceApplicationForm;
