@@ -12,6 +12,7 @@ export const DropDownType = {
   driveTrain: "driveTrain",
   conditions: "conditions",
   exteriorColors: "exteriorColors",
+  salutations: "salutations",
 };
 const TransmissionComponent = dynamic(() => import("./transmission"), {
   ssr: false,
@@ -39,6 +40,11 @@ const ExteriorComponent = dynamic(() => import("./exteriorColors"), {
   loading: () => <Loading />,
 });
 
+const SaturationComponent = dynamic(() => import("./salutation"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+
 const DynamicDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(undefined);
@@ -57,6 +63,8 @@ const DynamicDropdown = (props) => {
         return <ConditionsComponent callback={(item) => setSelected(item)} />;
       case DropDownType.exteriorColors:
         return <ExteriorComponent callback={(item) => setSelected(item)} />;
+      case DropDownType.saturations:
+        return <SaturationComponent callback={(item) => setSelected(item)} />;
     }
   };
 
@@ -82,7 +90,7 @@ const DynamicDropdown = (props) => {
   useEffect(() => {
     if (selected) {
       setIsOpen(false);
-      props.callback(selected.key)
+      props.callback(selected.key);
     }
   }, [selected]);
 

@@ -36,7 +36,7 @@ let links = [
     sub: [
       {
         text: "Finance Application",
-        link: "//",
+        link: "/finance-application",
       },
       {
         text: "Finance Calculator",
@@ -87,7 +87,6 @@ const Menu = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
 
   return (
     <Container className={containerStyles.absoloute}>
