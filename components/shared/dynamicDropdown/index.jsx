@@ -13,6 +13,7 @@ export const DropDownType = {
   conditions: "conditions",
   exteriorColors: "exteriorColors",
   salutations: "salutations",
+  marital: "marital",
 };
 const TransmissionComponent = dynamic(() => import("./transmission"), {
   ssr: false,
@@ -40,7 +41,12 @@ const ExteriorComponent = dynamic(() => import("./exteriorColors"), {
   loading: () => <Loading />,
 });
 
-const SaturationComponent = dynamic(() => import("./salutation"), {
+const SalutationComponent = dynamic(() => import("./salutation"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+
+const MaritalComponent = dynamic(() => import("./marital"), {
   ssr: false,
   loading: () => <Loading />,
 });
@@ -63,8 +69,10 @@ const DynamicDropdown = (props) => {
         return <ConditionsComponent callback={(item) => setSelected(item)} />;
       case DropDownType.exteriorColors:
         return <ExteriorComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.saturations:
-        return <SaturationComponent callback={(item) => setSelected(item)} />;
+      case DropDownType.salutations:
+        return <SalutationComponent callback={(item) => setSelected(item)} />;
+      case DropDownType.marital:
+        return <MaritalComponent callback={(item) => setSelected(item)} />;
     }
   };
 

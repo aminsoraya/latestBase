@@ -82,16 +82,35 @@ const PersonalInformationForm = () => {
           />
         </div>
         <div className="col-6 mt-2">
+          <Input
+            placeholder="SIN"
+            type="text"
+            required={true}
+            className="input-trasparent"
+            name="user_sin_number"
+            onChange={formik.handleChange}
+            value={formik.values.phone}
+          />
+        </div>
+        <div className="col-6 mt-2">
           <DatePicker
             selected={formik.values.birthDate}
             onChange={(date) => formik.setFieldValue("birthDate", date)}
+            placeholderText="mm/dd/yyyy"
           />
         </div>
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Salutation"
-            type={DropDownType.saturations}
+            type={DropDownType.salutations}
             callback={(val) => formik.setFieldValue("user_salutation", val)}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <DynamicDropdown
+            placeholder="Marital Status"
+            type={DropDownType.marital}
+            callback={(val) => formik.setFieldValue("user_marital_status", val)}
           />
         </div>
         <div className="col-12 pt-2 pb-2">
