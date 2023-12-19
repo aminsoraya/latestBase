@@ -5,22 +5,8 @@
   padding-right: 20px;
   padding-left: 20px;
   padding-top: 20px;
-  color:$white;
-  .timeWorks {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    .timeWork {
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .day {
-        width: 100px;
-      }
-    }
-  }
+  color: $white;
+
   .contactUs {
     display: flex;
     flex-direction: column;
@@ -34,7 +20,7 @@
 }
 .form {
   width: 100%;
- 
+
   background: #4a4949;
   padding-left: 20px;
   padding-top: 20px;

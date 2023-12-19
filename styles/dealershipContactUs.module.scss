@@ -9,6 +9,7 @@
   background-color: $gray-slow;
   padding-top: 200px;
   padding-bottom: 100px;
+  color: $white;
   .img {
     height: 500px;
     position: relative;
@@ -16,6 +17,9 @@
     font-weight: bold;
     padding-top: 50px;
   }
-  
+  .timeWorks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
-

@@ -4,29 +4,10 @@ import { useMemo } from "react";
 import SubmitForm from "./form";
 import { GoTriangleRight } from "react-icons/go";
 import Container from "../container";
+import Timeworks from "@/components/shared/footer/bussniessHours"
 
 const Footer = () => {
   let { dealerData } = useAppStore();
-
-  let days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-  const timeWorks = useMemo(() => {
-    return dealerData?.timeWork
-      ?.filter((s) => s.startAt != "")
-      .map((item, index) => {
-        return {
-          ...item,
-          dayName: days[index],
-        };
-      });
-  }, [dealerData?.timeWork]);
 
   return (
     <div className={styles.main}>
@@ -78,22 +59,7 @@ const Footer = () => {
             className="col-xs-12 col-lg-4"
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <div className={styles.timeWorks}>
-              <h2>Business Hours</h2>
-              {timeWorks?.map((item, index) => {
-                return (
-                  <div className={styles.timeWork}>
-                    <span className={styles.day}>{item.dayName}</span>
-                    <span key={index}>
-                      {item.startAt} - {item.endAt}{" "}
-                    </span>
-                  </div>
-                );
-              })}
-              <h5 style={{ color: "#B29952", fontWeight: 500 }}>
-                United Auto Sales Ltd
-              </h5>
-            </div>
+            <Timeworks showLogo={true} />
           </div>
           <div className="col-xs-12 col-lg-4 p-0 m-0">
             <SubmitForm />

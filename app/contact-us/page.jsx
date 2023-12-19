@@ -5,6 +5,7 @@ import styles from "@/styles/dealershipContactUs.module.scss";
 import { useAppStore } from "@/hooks/store";
 import Container from "@/components/shared/container";
 import Button from "@/components/shared/button";
+import Timeworks from "@/components/shared/footer/bussniessHours";
 
 export default function Page() {
   const { setCurrentMenu } = useAppStore();
@@ -21,8 +22,8 @@ export default function Page() {
             <h2>Contact Us</h2>
             <Image src="/img/Contactus.jpg" objectFit="contain" fill />
           </div>
-          <div className={`col-lg-4`}>
-
+          <div className={`col-lg-4 ${styles.timeWorks}`}>
+            <Timeworks />
           </div>
         </div>
       </Container>

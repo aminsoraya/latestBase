@@ -1,0 +1,22 @@
+@import "colors";
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  .row {
+    font-size: 13px;
+    font-weight: bold;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .day {
+      width: 100px;
+    }
+  }
+  .logo {
+    color: $yellow-dark;
+    font-weight: 500;
+  }
+}
