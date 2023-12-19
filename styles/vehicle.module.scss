@@ -6,6 +6,8 @@
   background-color: $gray-pure;
   width: 100%;
   .filter_container {
+    position: absolute;
+    top: 40px;
     display: flex;
     flex-direction: column;
     max-height: 150px;
@@ -25,7 +27,7 @@
       min-height: 30px;
       font-size: small;
       padding-left: 10px;
-      input{
+      input {
         width: unset;
         height: unset;
       }

@@ -57,31 +57,35 @@ const PersonalInformationForm = () => {
           />
         </div>
         <div className="col-6 mt-2">
-          <Input
+          <DynamicDropdown
             placeholder="Drive Train"
-            type="tel"
+            type={DropDownType.driveTrain}
+          />
+        </div>
+        <div className="col-6 mt-2">
+          <Input
+            placeholder="Kilometers"
+            type="text"
             className="input-trasparent"
           />
         </div>
         <div className="col-6 mt-2">
           <Input
-            placeholder="Odometer"
-            type="email"
+            placeholder="Fuel Type"
+            type="text"
             className="input-trasparent"
           />
         </div>
         <div className="col-6 mt-2">
-          <Input
-            placeholder="Exterior Color"
-            type="tel"
-            className="input-trasparent"
+          <DynamicDropdown
+            placeholder="Exterior Colors"
+            type={DropDownType.exteriorColors}
           />
         </div>
         <div className="col-6 mt-2">
-          <Input
-            placeholder="Interior Color"
-            type="tel"
-            className="input-trasparent"
+          <DynamicDropdown
+            placeholder="Condition"
+            type={DropDownType.conditions}
           />
         </div>
         <div className="col-6 mt-2">
