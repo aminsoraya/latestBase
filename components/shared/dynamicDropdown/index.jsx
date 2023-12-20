@@ -16,6 +16,7 @@ export const DropDownType = {
   marital: "marital",
   homeStatus: "homeStatus",
   contractMethod: "contractMethod",
+  months: "months",
 };
 const TransmissionComponent = dynamic(() => import("./transmission"), {
   ssr: false,
@@ -63,6 +64,11 @@ const ContractMethodComponent = dynamic(() => import("./contractMethod"), {
   loading: () => <Loading />,
 });
 
+const MonthsComponent = dynamic(() => import("./months"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+
 const DynamicDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(undefined);
@@ -91,6 +97,8 @@ const DynamicDropdown = (props) => {
         return (
           <ContractMethodComponent callback={(item) => setSelected(item)} />
         );
+      case DropDownType.months:
+        return <MonthsComponent callback={(item) => setSelected(item)} />;
     }
   };
 
@@ -128,7 +136,9 @@ const DynamicDropdown = (props) => {
             placeholder={props.placeholder}
             className="input-trasparent"
             onClick={() => setIsOpen((state) => !state)}
-            value={selected?.alias}
+            value={`${selected?.alias||""} ${
+              props.type == DropDownType.months && selected?.key||""
+            }`}
           />
           <span>
             <FaAngleDown />
