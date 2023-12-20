@@ -6,7 +6,7 @@ import Slider from "@/components/home/latestProduct/slider";
 import { useEffect } from "react";
 import { useAppStore } from "@/hooks/store";
 import PersonalInformationForm from "../../components/carFinder/form";
-
+import image from "@/public/img/ford_mustang_mach_1_2021_4k-HD-1-1024x576.jpg";
 const AppraiseMyTrade = () => {
   const { setCurrentMenu, baseImageUrl, baseUrl, domain } = useAppStore();
 
@@ -37,7 +37,8 @@ const AppraiseMyTrade = () => {
               <div className={styles.img}>
                 <Image
                   fill
-                  src="/img/ford_mustang_mach_1_2021_4k-HD-1-1024x576.jpg"
+                  placeholder="blur"
+                  src={image}
                   sizes="(max-width: 780px) 100vw, 780px"
                 />
               </div>

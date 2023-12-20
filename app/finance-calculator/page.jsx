@@ -6,6 +6,7 @@ import Slider from "@/components/home/latestProduct/slider";
 import { useEffect } from "react";
 import { useAppStore } from "@/hooks/store";
 import FinanceCalculator from "../../components/finance-calculator/form";
+import image from "@/public/img/Finance-calcoulator.jpg";
 
 const AppraiseMyTrade = () => {
   const { setCurrentMenu } = useAppStore();
@@ -34,7 +35,8 @@ const AppraiseMyTrade = () => {
               <div className={styles.img}>
                 <Image
                   fill
-                  src="/img/Finance-calcoulator.jpg"
+                  src={image}
+                  placeholder="blur"
                   sizes="(max-width: 780px) 100vw, 780px"
                 />
               </div>

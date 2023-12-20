@@ -6,6 +6,7 @@ import Slider from "@/components/home/latestProduct/slider";
 import { useEffect } from "react";
 import { useAppStore } from "@/hooks/store";
 import PersonalInformationForm from "../../components/appraiseMyTrade/form";
+import image from "@/public/img/how-to-trade-in-a-car-3-780x443-1.jpg";
 
 const AppraiseMyTrade = () => {
   const { setCurrentMenu, baseImageUrl, baseUrl, domain } = useAppStore();
@@ -35,7 +36,8 @@ const AppraiseMyTrade = () => {
               <div className={styles.img}>
                 <Image
                   fill
-                  src="/img/how-to-trade-in-a-car-3-780x443-1.jpg"
+                  placeholder="blur"
+                  src={image}
                   sizes="(max-width: 780px) 100vw, 780px"
                 />
               </div>

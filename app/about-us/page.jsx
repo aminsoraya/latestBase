@@ -5,6 +5,7 @@ import styles from "@/styles/dealershipAboutUs.module.scss";
 import { useAppStore } from "@/hooks/store";
 import Container from "@/components/shared/container";
 import Button from "@/components/shared/button";
+import image from "@/public/img/2022_bentley_flying_spur_hybrid_odyssean_edition_4k_2-HD-1-scaled-pqj4sd5679s3mg22apoqif0firgkh8lhkjaq7pr1xk.jpg";
 
 export default function Page() {
   const { setCurrentMenu } = useAppStore();
@@ -19,7 +20,8 @@ export default function Page() {
         <div className="row p-0">
           <div className={`col-4 ${styles.img} d-none d-xl-block`}>
             <Image
-              src="/img/2022_bentley_flying_spur_hybrid_odyssean_edition_4k_2-HD-1-scaled-pqj4sd5679s3mg22apoqif0firgkh8lhkjaq7pr1xk.jpg"
+              src={image}
+              placeholder="blur"
               fill
             />
           </div>

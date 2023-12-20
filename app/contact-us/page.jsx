@@ -7,6 +7,7 @@ import Container from "@/components/shared/container";
 import Button from "@/components/shared/button";
 import Timeworks from "@/components/shared/footer/bussniessHours";
 import Address from "@/components/shared/footer/address";
+import image from "@/public/img/Contactus.jpg";
 
 export default function Page() {
   const { setCurrentMenu } = useAppStore();
@@ -23,7 +24,7 @@ export default function Page() {
             className={`col-lg-4 col-md-6 col-xs-12 ${styles.img} `}
           >
             <h2>Contact Us</h2>
-            <Image src="/img/Contactus.jpg" objectFit="contain" fill />
+            <Image src={image} placeholder="blur" objectFit="contain" fill />
           </div>
           <div className={`col-lg-4 col-md-6 col-xs-12 ${styles.timeWorks}`}>
             <Timeworks />
