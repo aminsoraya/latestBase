@@ -44,7 +44,7 @@ a {
 .react-datepicker-ignore-onclickoutside,
 .react-datepicker__input-container input {
   font-weight: bold !important;
-  background: #2e2e2e !important;
+  background: #474747 !important;
   border: 1px solid white !important;
   color: white !important;
   height: 40px;

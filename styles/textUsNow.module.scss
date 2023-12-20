@@ -1,0 +1,30 @@
+@import "colors";
+
+.main {
+  background: $gray-high;
+  padding-top: 150px;
+  padding-bottom: 50px;
+  color: $white;
+  .head {
+    > p {
+      line-height: 30px;
+      font-size: 13px;
+      text-align: justify;
+    }
+    min-height: 200px;
+  }
+  @media (min-width: 1000px) {
+    .head {
+      min-height: 300px;
+    }
+  }
+  .img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .form {
+    background: $gray-normal;
+    padding: 30px;
+  }
+}
