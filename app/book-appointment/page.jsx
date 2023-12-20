@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useAppStore } from "@/hooks/store";
 import Slider from "@/components/home/latestProduct/slider";
+import Form from "@/components/book-appointment/form";
 
 const BookAppointment = () => {
   const { setCurrentMenu } = useAppStore();
@@ -33,6 +34,9 @@ const BookAppointment = () => {
           >
             <Image placeholder="blur" src={image} fill />
           </div>
+        </div>
+        <div className="row w-100">
+          <Form />
         </div>
         <div className="row w-100">
           <Slider />

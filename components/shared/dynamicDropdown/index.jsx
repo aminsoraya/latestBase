@@ -15,6 +15,7 @@ export const DropDownType = {
   salutations: "salutations",
   marital: "marital",
   homeStatus: "homeStatus",
+  contractMethod: "contractMethod",
 };
 const TransmissionComponent = dynamic(() => import("./transmission"), {
   ssr: false,
@@ -57,6 +58,11 @@ const HomeStatusComponent = dynamic(() => import("./homeStatus"), {
   loading: () => <Loading />,
 });
 
+const ContractMethodComponent = dynamic(() => import("./contractMethod"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+
 const DynamicDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(undefined);
@@ -81,6 +87,10 @@ const DynamicDropdown = (props) => {
         return <MaritalComponent callback={(item) => setSelected(item)} />;
       case DropDownType.homeStatus:
         return <HomeStatusComponent callback={(item) => setSelected(item)} />;
+      case DropDownType.contractMethod:
+        return (
+          <ContractMethodComponent callback={(item) => setSelected(item)} />
+        );
     }
   };
 
