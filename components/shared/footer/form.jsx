@@ -5,12 +5,12 @@ import { useAppStore } from "@/hooks/store";
 import { toast } from "react-toastify";
 import Input from "../input";
 import TextArea from "../textArea";
-import Button from "../button";
+import Button from "@/components/shared/button";
 import Vehicle from "../vehicle";
 import { useState } from "react";
 import styles from "@/styles/footer.module.scss";
 
-const SubmitForm = () => {
+const SubmitForm = (props) => {
   let [frk_midv_id, setFrk_midv_id] = useState(undefined);
   let { domain, baseUrl } = useAppStore();
 
@@ -38,8 +38,13 @@ const SubmitForm = () => {
 
   return (
     <div className={styles.form}>
-      <h3>Get In Touch</h3>
-      <h5>Personal Information</h5>
+      {!props.hideGetInTouch && <h3>Get In Touch</h3>}
+
+      {!props.hideGetInTouch ? (
+        <h5>Personal Information</h5>
+      ) : (
+        <h3>Personal Information</h3>
+      )}
 
       <form onSubmit={formit.handleSubmit}>
         <div className="row ">
@@ -105,9 +110,7 @@ const SubmitForm = () => {
             />
           </div>
           <div className="col-lg-12 mh-100" style={{ height: "40px" }}>
-            <Button className="w-32 font-bold" type="submit">
-              Submit
-            </Button>
+            <Button className="w-32 font-bold">Submit</Button>
           </div>
         </div>
       </form>

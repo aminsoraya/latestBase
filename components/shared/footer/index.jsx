@@ -1,14 +1,11 @@
-import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/footer.module.scss";
-import { useMemo } from "react";
+import Map from "./map";
 import SubmitForm from "./form";
 import Container from "../container";
 import Timeworks from "@/components/shared/footer/bussniessHours";
 import Address from "./address";
 
 const Footer = () => {
-  let { dealerData } = useAppStore();
-
   return (
     <div className={styles.main}>
       <Container>
@@ -17,19 +14,7 @@ const Footer = () => {
             <div className={styles.contactUs}>
               <h2>Contact Us</h2>
               <Address />
-              <div>
-                <iframe
-                  allow="geolocation"
-                  src={dealerData?.map_url}
-                  frameborder="0"
-                  width="100%"
-                  height="320"
-                  className="border-0 w-100 p-0 m-0"
-                  aria-hidden="false"
-                  tabindex="0"
-                  id="iframe"
-                />
-              </div>
+              <Map />
             </div>
           </div>
           <div
