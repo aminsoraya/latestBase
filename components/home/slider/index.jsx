@@ -6,7 +6,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useSliderData } from "@/hooks/actions/sliders";
+import { useSliderData } from "@/hooks/actions/api/sliders";
 import useSWR from "swr";
 import { useAppStore } from "@/hooks/store";
 // import Skeleton from "@/components/shared/skeleton";

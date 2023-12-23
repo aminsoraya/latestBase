@@ -1,4 +1,4 @@
-import useDomain from "./domain";
+import useDomain from "../domain";
 
 export const useDealerData = async () => {
   const domain = useDomain();
@@ -14,7 +14,6 @@ export const useDealerData = async () => {
   let data = await fetch(`${baseUrl}/api/dealership/single/by/url/${domain}`, {
     next: { revalidate: 3600 },
   }).then((data) => data.json());
-
 
   return {
     domain,

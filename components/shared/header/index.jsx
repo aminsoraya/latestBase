@@ -18,8 +18,8 @@ let links = [
     text: "Inventory",
     sub: [
       {
-        text: "All Inventory",
-        link: "//",
+        text: "Used Inventory",
+        link: "/used-inventory",
       },
       {
         text: "Appraise My Trade",

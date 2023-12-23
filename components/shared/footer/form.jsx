@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { mutate } from "swr";
-import { useContactUs } from "@/hooks/actions/contactUs";
+import { useContactUs } from "@/hooks/actions/api/contactUs";
 import { useAppStore } from "@/hooks/store";
 import { toast } from "react-toastify";
 import Input from "../input";

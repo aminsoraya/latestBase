@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { useAppStore } from "@/hooks/store";
 import Loading from "../loading";
-import { useVehicles } from "@/hooks/actions/vehicles";
+import { useVehicles } from "@/hooks/actions/api/vehicles";
 import style from "@/styles/dynamicDropDown.module.scss";
 
 const Transmission = (props) => {

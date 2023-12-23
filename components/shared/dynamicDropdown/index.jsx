@@ -136,7 +136,7 @@ const DynamicDropdown = (props) => {
             placeholder={props.placeholder}
             className="input-trasparent"
             onClick={() => setIsOpen((state) => !state)}
-            value={`${selected?.alias||""} ${
+            value={`${selected?.alias||props.placeholder} ${
               props.type == DropDownType.months && selected?.key||""
             }`}
           />

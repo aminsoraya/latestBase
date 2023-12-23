@@ -6,7 +6,7 @@ import Input from "@/components/shared/input";
 import TextArea from "@/components/shared/textArea";
 import { useFormik } from "formik";
 import { mutate } from "swr";
-import { useContactUs } from "@/hooks/actions/contactUs";
+import { useContactUs } from "@/hooks/actions/api/contactUs";
 import { toast } from "react-toastify";
 import { useAppStore } from "@/hooks/store";
 import DatePicker from "react-datepicker";

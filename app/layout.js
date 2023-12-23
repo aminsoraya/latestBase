@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { useDealerData } from "@/hooks/actions";
+import { useDealerData } from "@/hooks/actions/api";
 import Layout from "@/components/shared";
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,5 +1,5 @@
 "use client";
-import { useVehicles } from "@/hooks/actions/vehicles";
+import { useVehicles } from "@/hooks/actions/api/vehicles";
 import { useAppStore } from "@/hooks/store";
 import useSWR from "swr";
 import Input from "./input";

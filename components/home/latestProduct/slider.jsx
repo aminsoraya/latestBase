@@ -2,7 +2,7 @@
 import React from "react";
 import useSWR from "swr";
 import { useAppStore } from "@/hooks/store";
-import { useVehicles } from "@/hooks/actions/vehicles";
+import { useVehicles } from "@/hooks/actions/api/vehicles";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";

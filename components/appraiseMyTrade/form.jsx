@@ -7,7 +7,7 @@ import TextArea from "@/components/shared/textArea";
 import Vehicle from "@/components/shared/vehicle";
 import { useFormik } from "formik";
 import { mutate } from "swr";
-import { useContactUs } from "@/hooks/actions/contactUs";
+import { useContactUs } from "@/hooks/actions/api/contactUs";
 import { toast } from "react-toastify";
 import { useAppStore } from "@/hooks/store";
 
