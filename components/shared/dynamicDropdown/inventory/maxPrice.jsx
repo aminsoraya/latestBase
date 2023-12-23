@@ -1,7 +1,8 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
+import { useState } from "react";
 
-const MinPrice = () => {
+const MaxPrice = () => {
   const { advancedSearchData } = useAppStore();
 
   const [prices] = useState(advancedSearchData?.priceRange);
@@ -10,9 +11,9 @@ const MinPrice = () => {
     .sort((a, b) => b - a)
     .map((value, index) => (
       <span key={index} className={styles.item}>
-        {value}
+        {value.toLocaleString()}
       </span>
     ));
 };
 
-export default MinPrice;
+export default MaxPrice;

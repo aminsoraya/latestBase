@@ -1,6 +1,6 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 const InventoryMaxKm = () => {
   const {
@@ -13,15 +13,15 @@ const InventoryMaxKm = () => {
 
   useEffect(() => {
     odometerType === 2
-      ? setKmOdometer(advanceSearchData?.odometerKMRange)
-      : setMiOdometer(advanceSearchData?.odometerMIRange);
+      ? setKmOdometer( odometerKMRange)
+      : setMiOdometer( odometerMIRange);
   }, [odometerType]);
 
   return (kmOdometer || miOdometer)
     ?.sort((a, b) => b - a)
     ?.map((value, index) => (
       <span key={index} className={styles.item}>
-        {value}
+        {value.toLocaleString()}
       </span>
     ));
 };
