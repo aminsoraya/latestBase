@@ -2,20 +2,7 @@ import styles from "@/styles/dynamicDropDown.module.scss";
 import { FaAngleDown } from "react-icons/fa6";
 import Input from "../input";
 import { useState, useEffect, useRef } from "react";
-import {
-  TransmissionComponent,
-  BodyStyleComponent,
-  YearsComponent,
-  DriveTrainComponent,
-  ConditionsComponent,
-  ExteriorComponent,
-  SalutationComponent,
-  MaritalComponent,
-  HomeStatusComponent,
-  ContractMethodComponent,
-  MonthsComponent,
-  InventoryMakesComponent,
-} from "./components";
+import * as Dynamic from "./components";
 import { DropDownTypes } from "./enumerations";
 
 const DynamicDropdown = (props) => {
@@ -25,33 +12,125 @@ const DynamicDropdown = (props) => {
   const getItems = () => {
     switch (props.type) {
       case DropDownTypes.transmission:
-        return <TransmissionComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.TransmissionComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
       case DropDownTypes.bodyStyle:
-        return <BodyStyleComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.BodyStyleComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.years:
-        return <YearsComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.YearsComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.driveTrain:
-        return <DriveTrainComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.DriveTrainComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.conditions:
-        return <ConditionsComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.ConditionsComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.exteriorColors:
-        return <ExteriorComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.ExteriorComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.salutations:
-        return <SalutationComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.SalutationComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.marital:
-        return <MaritalComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.MaritalComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.homeStatus:
-        return <HomeStatusComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.HomeStatusComponent callback={(item) => setSelected(item)} />
+        );
       case DropDownTypes.contractMethod:
         return (
-          <ContractMethodComponent callback={(item) => setSelected(item)} />
+          <Dynamic.ContractMethodComponent
+            callback={(item) => setSelected(item)}
+          />
         );
       case DropDownTypes.months:
-        return <MonthsComponent callback={(item) => setSelected(item)} />;
+        return (
+          <Dynamic.MonthsComponent callback={(item) => setSelected(item)} />
+        );
 
       case DropDownTypes.inventory_makes:
         return (
-          <InventoryMakesComponent callback={(item) => setSelected(item)} />
+          <Dynamic.InventoryMakesComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_minYear:
+        return (
+          <Dynamic.InventoryMinYearComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_maxYear:
+        return (
+          <Dynamic.InventoryMaxYearComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_bodyStyle:
+        return (
+          <Dynamic.InventoryBodyStyleComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_Color:
+        return (
+          <Dynamic.InventoryColorComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_MinPrice:
+        return (
+          <Dynamic.InventoryMinPriceComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_MaxPrice:
+        return (
+          <Dynamic.InventoryMaxPriceComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.transmission:
+        return (
+          <Dynamic.TransmissionComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_FuelType:
+        return (
+          <Dynamic.InventoryFuelTypeComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_MinKm:
+        return (
+          <Dynamic.InventoryMinKmComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_MaxKm:
+        return (
+          <Dynamic.InventoryMaxKmComponent
+            callback={(item) => setSelected(item)}
+          />
+        );
+      case DropDownTypes.inventory_Engine:
+        return (
+          <Dynamic.InventoryEngineComponent
+            callback={(item) => setSelected(item)}
+          />
         );
     }
   };

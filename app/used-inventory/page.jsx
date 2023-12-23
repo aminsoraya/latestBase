@@ -9,6 +9,7 @@ import { useVehicles } from "@/hooks/actions/api/vehicles";
 import { SkeletonLoading } from "@/components/shared/loading";
 import { DropDownTypes } from "@/components/shared/dynamicDropdown/enumerations";
 import { useFormik } from "formik";
+import Button from "@/components/shared/button";
 
 const UsedInventory = () => {
   const { setCurrentMenu, baseUrl, domain, setAdvancedSearchData } =
@@ -37,8 +38,8 @@ const UsedInventory = () => {
   return (
     <div className={styles.main}>
       <Container>
-        <div className="row w-100" style={{ height: "40px" }}>
-          <div className="col-lg-3 col-12 ">
+       <div className="row w-100" style={{ minHeight: "40px" }}>
+          <div className="col-lg-3 col-12 mt-3">
             {isLoading ? (
               <SkeletonLoading />
             ) : (
@@ -49,16 +50,149 @@ const UsedInventory = () => {
               />
             )}
           </div>
-          <div className="col-lg-3 col-12 ">
-            <SkeletonLoading />
+          <div className="col-lg-2 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Min Year"
+                type={DropDownTypes.inventory_minYear}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
           </div>
-          <div className="col-lg-3 col-12 ">
-            <SkeletonLoading />
+          <div className="col-lg-2 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Max Year"
+                type={DropDownTypes.inventory_maxYear}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
           </div>
-          <div className="col-lg-3 col-12 ">
-            <SkeletonLoading />
+          <div className="col-lg-3 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Any Model"
+                type={DropDownTypes.inventory_maxYear}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-2 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Any Body Style"
+                type={DropDownTypes.inventory_bodyStyle}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
           </div>
         </div>
+        <div className="row w-100 " style={{ minHeight: "40px" }}>
+          <div className="col-lg-3 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Any Color"
+                type={DropDownTypes.inventory_Color}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-2 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Min Price"
+                type={DropDownTypes.inventory_MinPrice}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-2 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Max Price"
+                type={DropDownTypes.inventory_MaxPrice}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-3 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Any Transmission"
+                type={DropDownTypes.transmission}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-2 col-12 mt-3">
+            <Button>Search</Button>
+          </div>
+        </div>
+        <div className="row w-100 " style={{ minHeight: "40px" }}>
+          <div className="col-lg-3 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Any Fuel Type"
+                type={DropDownTypes.inventory_FuelType}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-2 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Min Km"
+                type={DropDownTypes.inventory_MinKm}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-2 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Max Km"
+                type={DropDownTypes.inventory_MaxKm}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-3 col-12 mt-3">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="Any Engine"
+                type={DropDownTypes.inventory_Engine}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
+          </div>
+          <div className="col-lg-2 col-12 mt-3">
+            <Button>Reset</Button>
+          </div>
+        </div> 
       </Container>
     </div>
   );

@@ -55,6 +55,66 @@ const InventoryMakesComponent = dynamic(() => import("./inventory/makes"), {
   ssr: false,
   loading: () => <Loading />,
 });
+const InventoryMinYearComponent = dynamic(() => import("./inventory/minYear"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+const InventoryMaxYearComponent = dynamic(() => import("./inventory/maxYear"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+const InventoryBodyStyleComponent = dynamic(
+  () => import("./inventory/bodyStyle"),
+  {
+    ssr: false,
+    loading: () => <Loading />,
+  }
+);
+const InventoryMinPriceComponent = dynamic(
+  () => import("./inventory/minPrice"),
+  {
+    ssr: false,
+    loading: () => <Loading />,
+  }
+);
+
+const InventoryMaxPriceComponent = dynamic(
+  () => import("./inventory/maxPrice"),
+  {
+    ssr: false,
+    loading: () => <Loading />,
+  }
+);
+const InventoryTransmissionComponent = dynamic(
+  () => import("./inventory/transmission"),
+  {
+    ssr: false,
+    loading: () => <Loading />,
+  }
+);
+const InventoryFuelTypeComponent = dynamic(
+  () => import("./inventory/fuelType"),
+  {
+    ssr: false,
+    loading: () => <Loading />,
+  }
+);
+const InventoryMinKmComponent = dynamic(() => import("./inventory/minKm"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+const InventoryMaxKmComponent = dynamic(() => import("./inventory/maxKm"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+const InventoryEngineComponent = dynamic(() => import("./inventory/engine"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+const InventoryColorComponent = dynamic(() => import("./inventory/color"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
 
 export {
   InventoryMakesComponent,
@@ -69,4 +129,15 @@ export {
   YearsComponent,
   BodyStyleComponent,
   TransmissionComponent,
+  InventoryMinYearComponent,
+  InventoryMaxYearComponent,
+  InventoryBodyStyleComponent,
+  InventoryEngineComponent,
+  InventoryMinKmComponent,
+  InventoryMaxKmComponent,
+  InventoryFuelTypeComponent,
+  InventoryTransmissionComponent,
+  InventoryMaxPriceComponent,
+  InventoryMinPriceComponent,
+  InventoryColorComponent,
 };
