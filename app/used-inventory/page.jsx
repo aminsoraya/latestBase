@@ -6,7 +6,9 @@ import Container from "@/components/shared/container";
 import DynamicDropdown from "@/components/shared/dynamicDropdown";
 import useSWR from "swr";
 import { useVehicles } from "@/hooks/actions/api/vehicles";
-import Loading from "@/components/shared/loading";
+import { SkeletonLoading } from "@/components/shared/loading";
+import { DropDownTypes } from "@/components/shared/dynamicDropdown/enumerations";
+import { useFormik } from "formik";
 
 const UsedInventory = () => {
   const { setCurrentMenu, baseUrl, domain } = useAppStore();
@@ -21,16 +23,34 @@ const UsedInventory = () => {
     setCurrentMenu({ currentMenu: "/used-inventory" });
   }, []);
 
+  const formik = useFormik({
+    initialValues: {},
+    onSubmit: async (values, { resetForm }) => {},
+  });
+
   return (
     <div className={styles.main}>
       <Container>
-        <div className="row w-100">
-          <div className="col-lg-6" style={{ background: "red" }}>
-            1{isLoading && <Loading />}
-            {/* <p>{JSON.stringify(dealerData)}</p> */}
+        <div className="row w-100" style={{ height: "40px" }}>
+          <div className="col-lg-3 col-12 ">
+            {isLoading ? (
+              <SkeletonLoading />
+            ) : (
+              <DynamicDropdown
+                placeholder="loanTerm"
+                type={DropDownTypes.months}
+                callback={(val) => formik.setFieldValue("loanTerm", val)}
+              />
+            )}
           </div>
-          <div className="col-lg-6" style={{ background: "blue" }}> 
-            2
+          <div className="col-lg-3 col-12 ">
+            <SkeletonLoading />
+          </div>
+          <div className="col-lg-3 col-12 ">
+            <SkeletonLoading />
+          </div>
+          <div className="col-lg-3 col-12 ">
+            <SkeletonLoading />
           </div>
         </div>
       </Container>
