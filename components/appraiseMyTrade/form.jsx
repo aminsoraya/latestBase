@@ -1,7 +1,5 @@
 import Button from "@/components/shared/button";
-import DynamicDropdown, {
-  DropDownType,
-} from "@/components/shared/dynamicDropdown";
+import DynamicDropdown from "@/components/shared/dynamicDropdown";
 import Input from "@/components/shared/input";
 import TextArea from "@/components/shared/textArea";
 import Vehicle from "@/components/shared/vehicle";
@@ -10,6 +8,7 @@ import { mutate } from "swr";
 import { useContactUs } from "@/hooks/actions/api/contactUs";
 import { toast } from "react-toastify";
 import { useAppStore } from "@/hooks/store";
+import { DropDownTypes } from "../shared/dynamicDropdown/enumerations";
 
 const PersonalInformationForm = () => {
   const initialValues = {};
@@ -94,7 +93,7 @@ const PersonalInformationForm = () => {
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Year"
-            type={DropDownType.years}
+            type={DropDownTypes.years}
             callback={(val) => formik.setFieldValue("year", val)}
           />
         </div>
@@ -128,21 +127,21 @@ const PersonalInformationForm = () => {
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Body Style"
-            type={DropDownType.bodyStyle}
+            type={DropDownTypes.bodyStyle}
             callback={(val) => formik.setFieldValue("bodyStyle", val)}
           />
         </div>
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Transmission"
-            type={DropDownType.transmission}
+            type={DropDownTypes.transmission}
             callback={(val) => formik.setFieldValue("transmission", val)}
           />
         </div>
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Drive Line"
-            type={DropDownType.driveTrain}
+            type={DropDownTypes.driveTrain}
             callback={(val) => formik.setFieldValue("driveLine", val)}
           />
         </div>
@@ -169,14 +168,14 @@ const PersonalInformationForm = () => {
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Exterior Colors"
-            type={DropDownType.exteriorColors}
+            type={DropDownTypes.exteriorColors}
             callback={(val) => formik.setFieldValue("frk_exterior_color", val)}
           />
         </div>
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Condition"
-            type={DropDownType.conditions}
+            type={DropDownTypes.conditions}
             callback={(val) => formik.setFieldValue("condition", val)}
           />
         </div>

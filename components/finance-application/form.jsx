@@ -1,7 +1,5 @@
 import Button from "@/components/shared/button";
-import DynamicDropdown, {
-  DropDownType,
-} from "@/components/shared/dynamicDropdown";
+import DynamicDropdown from "@/components/shared/dynamicDropdown";
 import Input from "@/components/shared/input";
 import TextArea from "@/components/shared/textArea";
 import { useFormik } from "formik";
@@ -12,6 +10,7 @@ import { useAppStore } from "@/hooks/store";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { DropDownTypes } from "../shared/dynamicDropdown/enumerations";
 
 const FinanceApplicationForm = () => {
   const [rules, setRules] = useState(false);
@@ -103,14 +102,14 @@ const FinanceApplicationForm = () => {
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Salutation"
-            type={DropDownType.salutations}
+            type={DropDownTypes.salutations}
             callback={(val) => formik.setFieldValue("user_salutation", val)}
           />
         </div>
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Marital Status"
-            type={DropDownType.marital}
+            type={DropDownTypes.marital}
             callback={(val) => formik.setFieldValue("user_marital_status", val)}
           />
         </div>
@@ -183,7 +182,7 @@ const FinanceApplicationForm = () => {
         <div className="col-6 mt-2">
           <DynamicDropdown
             placeholder="Home Status"
-            type={DropDownType.marital}
+            type={DropDownTypes.marital}
             callback={(val) => formik.setFieldValue("user_marital_status", val)}
           />
         </div>

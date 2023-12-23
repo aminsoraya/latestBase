@@ -1,73 +1,21 @@
 import styles from "@/styles/dynamicDropDown.module.scss";
 import { FaAngleDown } from "react-icons/fa6";
 import Input from "../input";
-import Loading from "../loading";
-import dynamic from "next/dynamic";
 import { useState, useEffect, useRef } from "react";
-
-export const DropDownType = {
-  transmission: "transmission",
-  bodyStyle: "bodystyles",
-  years: "years",
-  driveTrain: "driveTrain",
-  conditions: "conditions",
-  exteriorColors: "exteriorColors",
-  salutations: "salutations",
-  marital: "marital",
-  homeStatus: "homeStatus",
-  contractMethod: "contractMethod",
-  months: "months",
-};
-const TransmissionComponent = dynamic(() => import("./transmission"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-const BodyStyleComponent = dynamic(() => import("./bodyStyle"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
-const YearsComponent = dynamic(() => import("./years"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-const DriveTrainComponent = dynamic(() => import("./driveTrain"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-const ConditionsComponent = dynamic(() => import("./conditions"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-const ExteriorComponent = dynamic(() => import("./exteriorColors"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
-const SalutationComponent = dynamic(() => import("./salutation"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
-const MaritalComponent = dynamic(() => import("./marital"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
-const HomeStatusComponent = dynamic(() => import("./homeStatus"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
-const ContractMethodComponent = dynamic(() => import("./contractMethod"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
-const MonthsComponent = dynamic(() => import("./months"), {
-  ssr: false,
-  loading: () => <Loading />,
-});
+import {
+  TransmissionComponent,
+  BodyStyleComponent,
+  YearsComponent,
+  DriveTrainComponent,
+  ConditionsComponent,
+  ExteriorComponent,
+  SalutationComponent,
+  MaritalComponent,
+  HomeStatusComponent,
+  ContractMethodComponent,
+  MonthsComponent,
+} from "./components";
+import { DropDownTypes } from "./enumerations";
 
 const DynamicDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,29 +23,29 @@ const DynamicDropdown = (props) => {
 
   const getItems = () => {
     switch (props.type) {
-      case DropDownType.transmission:
+      case DropDownTypes.transmission:
         return <TransmissionComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.bodyStyle:
+      case DropDownTypes.bodyStyle:
         return <BodyStyleComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.years:
+      case DropDownTypes.years:
         return <YearsComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.driveTrain:
+      case DropDownTypes.driveTrain:
         return <DriveTrainComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.conditions:
+      case DropDownTypes.conditions:
         return <ConditionsComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.exteriorColors:
+      case DropDownTypes.exteriorColors:
         return <ExteriorComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.salutations:
+      case DropDownTypes.salutations:
         return <SalutationComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.marital:
+      case DropDownTypes.marital:
         return <MaritalComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.homeStatus:
+      case DropDownTypes.homeStatus:
         return <HomeStatusComponent callback={(item) => setSelected(item)} />;
-      case DropDownType.contractMethod:
+      case DropDownTypes.contractMethod:
         return (
           <ContractMethodComponent callback={(item) => setSelected(item)} />
         );
-      case DropDownType.months:
+      case DropDownTypes.months:
         return <MonthsComponent callback={(item) => setSelected(item)} />;
     }
   };
@@ -136,8 +84,8 @@ const DynamicDropdown = (props) => {
             placeholder={props.placeholder}
             className="input-trasparent"
             onClick={() => setIsOpen((state) => !state)}
-            value={`${selected?.alias||props.placeholder} ${
-              props.type == DropDownType.months && selected?.key||""
+            value={`${selected?.alias || props.placeholder} ${
+              (props.type == DropDownTypes.months && selected?.key) || ""
             }`}
           />
           <span>

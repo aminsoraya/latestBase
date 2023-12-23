@@ -1,12 +1,10 @@
 import Button from "@/components/shared/button";
-import DynamicDropdown, {
-  DropDownType,
-} from "@/components/shared/dynamicDropdown";
+import DynamicDropdown from "@/components/shared/dynamicDropdown";
 import Input from "@/components/shared/input";
 import { useFormik } from "formik";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { FaDollarSign } from "react-icons/fa";
+import { DropDownTypes } from "../shared/dynamicDropdown/enumerations";
 
 const FinanceApplicationForm = () => {
   const [results, setResults] = useState();
@@ -73,7 +71,7 @@ const FinanceApplicationForm = () => {
           <label htmlFor="">Month Term</label>
           <DynamicDropdown
             placeholder="loanTerm"
-            type={DropDownType.months}
+            type={DropDownTypes.months}
             callback={(val) => formik.setFieldValue("loanTerm", val)}
           />
         </div>

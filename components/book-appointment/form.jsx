@@ -1,10 +1,7 @@
 import Button from "@/components/shared/button";
-import DynamicDropdown, {
-  DropDownType,
-} from "@/components/shared/dynamicDropdown";
+import DynamicDropdown from "@/components/shared/dynamicDropdown";
 import Input from "@/components/shared/input";
 import TextArea from "@/components/shared/textArea";
-import Vehicle from "@/components/shared/vehicle";
 import { useFormik } from "formik";
 import { mutate } from "swr";
 import { useContactUs } from "@/hooks/actions/api/contactUs";
@@ -12,6 +9,7 @@ import { toast } from "react-toastify";
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/bookAppoinment.module.scss";
 import DatePicker from "react-datepicker";
+import { DropDownTypes } from "../shared/dynamicDropdown/enumerations";
 
 const BookAppoinmentForm = () => {
   const initialValues = {};
@@ -86,7 +84,7 @@ const BookAppoinmentForm = () => {
           <div className="col-6 mt-2">
             <DynamicDropdown
               placeholder="Method of contract"
-              type={DropDownType.contractMethod}
+              type={DropDownTypes.contractMethod}
               callback={(val) => formik.setFieldValue("contract", val)}
             />
           </div>
@@ -106,7 +104,7 @@ const BookAppoinmentForm = () => {
                 color: "white",
               }}
               placeholder="Additional ..."
-              type={DropDownType.bodyStyle}
+              type={DropDownTypes.bodyStyle}
               callback={(val) => formik.setFieldValue("bodyStyle", val)}
             />
           </div>
