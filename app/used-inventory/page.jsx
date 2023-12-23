@@ -11,9 +11,10 @@ import { DropDownTypes } from "@/components/shared/dynamicDropdown/enumerations"
 import { useFormik } from "formik";
 
 const UsedInventory = () => {
-  const { setCurrentMenu, baseUrl, domain } = useAppStore();
+  const { setCurrentMenu, baseUrl, domain, setAdvancedSearchData } =
+    useAppStore();
 
-  let { data: dealerData, isLoading } = useSWR(
+  let { data: advancedSearchData, isLoading } = useSWR(
     `${baseUrl}/api/dealership/advance/search/vehicles/get/${domain}`,
     useVehicles
   );
@@ -22,6 +23,11 @@ const UsedInventory = () => {
   useEffect(() => {
     setCurrentMenu({ currentMenu: "/used-inventory" });
   }, []);
+
+  //pass to main store(zustand)
+  useEffect(() => {
+    setAdvancedSearchData({ advancedSearchData });
+  }, [advancedSearchData]);
 
   const formik = useFormik({
     initialValues: {},
@@ -37,8 +43,8 @@ const UsedInventory = () => {
               <SkeletonLoading />
             ) : (
               <DynamicDropdown
-                placeholder="loanTerm"
-                type={DropDownTypes.months}
+                placeholder="Any Make"
+                type={DropDownTypes.inventory_makes}
                 callback={(val) => formik.setFieldValue("loanTerm", val)}
               />
             )}

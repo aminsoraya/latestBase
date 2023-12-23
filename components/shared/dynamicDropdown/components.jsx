@@ -51,8 +51,13 @@ const MonthsComponent = dynamic(() => import("./months"), {
   ssr: false,
   loading: () => <Loading />,
 });
+const InventoryMakesComponent = dynamic(() => import("./inventory/makes"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
 
 export {
+  InventoryMakesComponent,
   MonthsComponent,
   ContractMethodComponent,
   HomeStatusComponent,

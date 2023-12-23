@@ -14,6 +14,7 @@ import {
   HomeStatusComponent,
   ContractMethodComponent,
   MonthsComponent,
+  InventoryMakesComponent,
 } from "./components";
 import { DropDownTypes } from "./enumerations";
 
@@ -47,6 +48,11 @@ const DynamicDropdown = (props) => {
         );
       case DropDownTypes.months:
         return <MonthsComponent callback={(item) => setSelected(item)} />;
+
+      case DropDownTypes.inventory_makes:
+        return (
+          <InventoryMakesComponent callback={(item) => setSelected(item)} />
+        );
     }
   };
 

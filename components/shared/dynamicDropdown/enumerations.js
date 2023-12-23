@@ -11,4 +11,5 @@ export const DropDownTypes = {
   homeStatus: "homeStatus",
   contractMethod: "contractMethod",
   months: "months",
+  inventory_makes: "inventory_makes",
 };
