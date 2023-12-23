@@ -22,6 +22,6 @@ export const DropDownTypes = {
   inventory_Transmission: "inventory_Transmission",
   inventory_FuelType: "inventory_FuelType",
   inventory_MinKm: "inventory_MinKm",
-  inventory_MaxKm: "inventory_MinKm",
+  inventory_MaxKm: "inventory_MaxKm",
   inventory_Engine: "inventory_Engine",
 };
