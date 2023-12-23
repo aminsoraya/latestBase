@@ -17,6 +17,7 @@ import { IoSearch } from "react-icons/io5";
 import { useContactUs } from "@/hooks/actions/api/contactUs";
 import Image from "next/image";
 import staticImg from "@/public/img/default-inventory-image-car-med.png";
+import Link from "next/link";
 
 const UsedInventory = () => {
   //base data
@@ -254,7 +255,7 @@ const UsedInventory = () => {
             </div>
           </div>
         </form>
-        <div className="row w-100 mb-5">
+        <div className="row w-100 mb-5" style={{ color: "black" }}>
           {loading &&
             Array.from({ length: 6 }).map((item, index) => {
               return (
@@ -272,12 +273,14 @@ const UsedInventory = () => {
                   position: "relative",
                   paddingRight: 5,
                   paddingLeft: 5,
+                  background: "white",
                 }}
               >
                 <div style={{ position: "relative", height: "250px" }}>
                   {car?.cover_image ? (
                     <Image
-                      layout="fill"
+                      fill
+                      sizes="(min-width:740px) 674px, calc(95.48vw-18px)"
                       src={`${baseSpecialImageUrl}${car?.cover_image}`}
                       loading="lazy"
                     />
@@ -286,8 +289,64 @@ const UsedInventory = () => {
                       layout="fill"
                       src={staticImg}
                       placeholder="blur"
-                      loading="lazy"                    />
+                      loading="lazy"
+                    />
                   )}
+                </div>
+                <div>
+                  <div className="row pt-2">
+                    <div
+                      className="col-12"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        fontSize: "12px",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <input type="checkbox" />
+                      <span>Select For Compare</span>
+                      <Button
+                        isTransparent={true}
+                        style={{
+                          color: "black",
+                          width: "150px",
+                          height: "30px",
+                        }}
+                      >
+                        Select For Compare
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="row pt-2">
+                    <div className="col-12" style={{ color: "black" }}>
+                      <Link
+                        href={`/cars/used/${car?.model_year}-${car?.make}-${car?.model}-${car?.id}`}
+                      >
+                        {car?.Vehicle?.model_year} {car?.Vehicle?.make}
+                        {car?.Vehicle?.model}
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12">
+                      <hr />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      <span>Exterior Color</span>
+                    </div>
+                    <div className="col-6">White</div>
+                    <div className="col-6">
+                      <span>Stock #</span>
+                    </div>
+                    <div className="col-6">White</div>
+                    <div className="col-6">
+                      <span>Stock #</span>
+                    </div>
+                    <div className="col-6">1111</div>
+                  </div>
                 </div>
               </div>
             );
