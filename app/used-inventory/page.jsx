@@ -15,8 +15,7 @@ import { useFormik } from "formik";
 import Button from "@/components/shared/button";
 import { IoSearch } from "react-icons/io5";
 import { useContactUs } from "@/hooks/actions/api/contactUs";
-import Card from "@/components/used-inventory/card";
-import { VscListUnordered } from "react-icons/vsc";
+import HorzontalCard from "@/components/used-inventory/horizontalCard";
 import { PiSquareSplitVerticalFill } from "react-icons/pi";
 import { PiSquareSplitHorizontalFill } from "react-icons/pi";
 
@@ -276,44 +275,59 @@ const UsedInventory = () => {
           </div>
         </form>
         <div className={`row w-100 mb-5 `}>
-          {loading &&
-            Array.from({ length: 6 }).map((_, index) => {
-              return (
-                <div className="col-4 mt-5" key={index}>
-                  <SkeletonCardHorizontalLoading />
-                </div>
-              );
-            })}
-          <div className={`col-12 mt-2 mb-2 ${styles.headerResponse}`}>
-            <span>
-              {cars.length > 0 && <h2>{cars[0].fullSearchCount} Vehicles</h2>}
-            </span>
-          </div>
-          <div className={`col-12 mt-2 mb-2 ${styles.headerResponse} w-full`}>
-            <span className={styles.sortItems}>
-              Sort: <button>Year</button>
-              <span>|</span>
-              <button>Make</button>
-              <span>|</span>
-              <button>Model</button>
-              <span>|</span>
-              <button>Body Style</button>
-              <span>|</span>
-              <button>Price</button>
-            </span>
-            <span className={styles.sortIcons}>
-              <div>
-                <PiSquareSplitHorizontalFill />
+          {loading && (
+            <>
+              <div className="col-6 mt-5" style={{ minHeight: "40px" }}>
+                <SkeletonLoading />
               </div>
-              <div>
-                <PiSquareSplitVerticalFill />
+              <div className="col-12 mt-2" style={{ minHeight: "40px" }}>
+                <SkeletonLoading />
               </div>
-            </span>
-          </div>
-          {cars.length > 0 &&
-            cars?.map((car, index) => {
-              return <Card key={index} car={car} />;
-            })}
+              {Array.from({ length: 6 }).map((_, index) => {
+                return (
+                  <div className="col-4 mt-5" key={index}>
+                    <SkeletonCardHorizontalLoading />
+                  </div>
+                );
+              })}
+            </>
+          )}
+
+          {cars.length > 0 && (
+            <>
+              <div className={`col-12 mt-5 mb-2 ${styles.headerResponse}`}>
+                <span>
+                  {cars.length > 0 && (
+                    <h2>{cars[0].fullSearchCount} Vehicles</h2>
+                  )}
+                </span>
+              </div>
+              <div className={`col-12  mb-2 ${styles.headerResponse} w-full`}>
+                <span className={styles.sortItems}>
+                  Sort: <button>Year</button>
+                  <span>|</span>
+                  <button>Make</button>
+                  <span>|</span>
+                  <button>Model</button>
+                  <span>|</span>
+                  <button>Body Style</button>
+                  <span>|</span>
+                  <button>Price</button>
+                </span>
+                <span className={styles.sortIcons}>
+                  <div>
+                    <PiSquareSplitHorizontalFill />
+                  </div>
+                  <div>
+                    <PiSquareSplitVerticalFill />
+                  </div>
+                </span>
+              </div>
+              {cars?.map((car, index) => {
+                return <HorzontalCard key={index} car={car} />;
+              })}
+            </>
+          )}
         </div>
       </Container>
     </div>
