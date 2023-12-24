@@ -10,6 +10,7 @@ const Card = ({ car }) => {
 
   return (
     <div className="col-lg-4 mt-4">
+      
       <div className={styles.card}>
         <div className={styles.img}>
           {car?.cover_image ? (
