@@ -60,7 +60,13 @@ const UsedInventory = () => {
   return (
     <div className={styles.main}>
       <Container>
-        <Form />
+        <Form
+          setCars={(cars) => {
+            console.log("cars ",cars)
+            setCars(cars);
+          }}
+          setLoading={(loading) => setLoading(loading)}
+        />
         {!loading && (
           <div className="row">
             <div className={`col-12 mt-5 mb-2 ${styles.headerResponse}`}>

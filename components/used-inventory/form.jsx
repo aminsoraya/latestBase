@@ -7,9 +7,11 @@ import styles from "@/styles/usedInventory.module.scss";
 import { useState } from "react";
 import { SkeletonLoading } from "@/components/shared/loading";
 import { useAppStore } from "@/hooks/store";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { useVehicles } from "@/hooks/actions/api/vehicles";
 import { useEffect } from "react";
+import { useContactUs } from "@/hooks/actions/api/contactUs";
+import { toast } from "react-toastify";
 
 export const initialValues = {
   fuel_type: "",
@@ -34,12 +36,10 @@ export const initialValues = {
   odometer_low: 0,
   odometer_high: 431000,
 };
-const Form = () => {
-  const [loading, setLoading] = useState(true);
 
+const Form = (props) => {
   //base data
-  const { setCurrentMenu, baseUrl, domain, setAdvancedSearchData } =
-    useAppStore();
+  const { baseUrl, domain, setAdvancedSearchData } = useAppStore();
 
   //dropdowns data
   let { data: advancedSearchData, isLoading } = useSWR(
@@ -55,18 +55,20 @@ const Form = () => {
   const formik = useFormik({
     initialValues: {},
     onSubmit: async (values, { resetForm }) => {
-      setLoading(true);
-      let response = await mutate(
+      props.setLoading(true);
+
+      await mutate(
         "advanceSearch",
         useContactUs(
           initialValues,
           `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=1&limit=10`
         )
-      );
-      if (response) {
-        setLoading(false);
-        setCars(response);
-      }
+      )
+        .then((response) => props.setCars(response))
+        .finally(() => props.setLoading(false))
+        .catch((error) => {
+          toast.error(error.message);
+        });
     },
   });
   return (
