@@ -53,6 +53,7 @@ const UsedInventory = () => {
   }, []);
 
   useEffect(() => {
+    console.log("currentPage ", currentPage);
     (async () => {
       setLoading(true);
       await mutate(
