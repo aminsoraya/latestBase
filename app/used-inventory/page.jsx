@@ -16,6 +16,9 @@ import Button from "@/components/shared/button";
 import { IoSearch } from "react-icons/io5";
 import { useContactUs } from "@/hooks/actions/api/contactUs";
 import Card from "@/components/used-inventory/card";
+import { VscListUnordered } from "react-icons/vsc";
+import { PiSquareSplitVerticalFill } from "react-icons/pi";
+import { PiSquareSplitHorizontalFill } from "react-icons/pi";
 
 const initialValues = {
   fuel_type: "",
@@ -286,7 +289,7 @@ const UsedInventory = () => {
               {cars.length > 0 && <h2>{cars[0].fullSearchCount} Vehicles</h2>}
             </span>
           </div>
-          <div className={`col-12 mt-2 mb-2 ${styles.headerResponse}`}>
+          <div className={`col-12 mt-2 mb-2 ${styles.headerResponse} w-full`}>
             <span className={styles.sortItems}>
               Sort: <button>Year</button>
               <span>|</span>
@@ -297,6 +300,14 @@ const UsedInventory = () => {
               <button>Body Style</button>
               <span>|</span>
               <button>Price</button>
+            </span>
+            <span className={styles.sortIcons}>
+              <div>
+                <PiSquareSplitHorizontalFill />
+              </div>
+              <div>
+                <PiSquareSplitVerticalFill />
+              </div>
             </span>
           </div>
           {cars.length > 0 &&

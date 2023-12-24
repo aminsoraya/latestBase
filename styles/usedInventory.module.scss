@@ -8,7 +8,7 @@
 }
 .dropDown {
   min-height: 40px;
-  color:$white;
+  color: $white;
 }
 .card {
   width: 99%;
@@ -39,7 +39,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .price{
+    .price {
       font-weight: 800;
     }
   }
@@ -51,16 +51,31 @@
   }
 }
 
-.headerResponse{
+.headerResponse {
   color: white;
-  button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
     background: transparent;
     border: none;
     color: $white;
+    font-size: 14px;
   }
-  .sortItems{
+  .sortItems {
     width: 350px;
     display: flex;
     justify-content: space-between;
+  }
+  .sortIcons {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    width: 50px;
+    display: flex;
+    justify-content: space-between;
+    > div {
+      cursor: pointer;
+    }
   }
 }
