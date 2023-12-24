@@ -15,19 +15,12 @@ import { useFormik } from "formik";
 import Button from "@/components/shared/button";
 import { IoSearch } from "react-icons/io5";
 import { useContactUs } from "@/hooks/actions/api/contactUs";
-import Image from "next/image";
-import staticImg from "@/public/img/default-inventory-image-car-med.png";
-import Link from "next/link";
+import Card from "@/components/used-inventory/card";
 
 const UsedInventory = () => {
   //base data
-  const {
-    setCurrentMenu,
-    baseUrl,
-    domain,
-    setAdvancedSearchData,
-    baseSpecialImageUrl,
-  } = useAppStore();
+  const { setCurrentMenu, baseUrl, domain, setAdvancedSearchData } =
+    useAppStore();
 
   //dropdowns data
   let { data: advancedSearchData, isLoading } = useSWR(
@@ -92,7 +85,7 @@ const UsedInventory = () => {
     <div className={styles.main}>
       <Container>
         <form onSubmit={formik.handleSubmit}>
-          <div className="row w-100" style={{ minHeight: "40px" }}>
+          <div className={`row w-100 ${styles.dropDown}`}>
             <div className="col-lg-3 col-12 mt-3">
               {isLoading ? (
                 <SkeletonLoading />
@@ -149,7 +142,7 @@ const UsedInventory = () => {
               )}
             </div>
           </div>
-          <div className="row w-100 " style={{ minHeight: "40px" }}>
+          <div className={`row w-100 ${styles.dropDown}`}>
             <div className="col-lg-3 col-12 mt-3">
               {isLoading ? (
                 <SkeletonLoading />
@@ -205,7 +198,7 @@ const UsedInventory = () => {
               )}
             </div>
           </div>
-          <div className="row w-100 " style={{ minHeight: "40px" }}>
+          <div className={`row w-100 ${styles.dropDown}`}>
             <div className="col-lg-3 col-12 mt-3">
               {isLoading ? (
                 <SkeletonLoading />
@@ -255,101 +248,17 @@ const UsedInventory = () => {
             </div>
           </div>
         </form>
-        <div className="row w-100 mb-5" style={{ color: "black" }}>
+        <div className="row w-100 mb-5">
           {loading &&
-            Array.from({ length: 6 }).map((item, index) => {
+            Array.from({ length: 6 }).map((_, index) => {
               return (
-                <div className="col-4 mt-5">
+                <div className="col-4 mt-5" key={index}>
                   <SkeletonCardHorizontalLoading />
                 </div>
               );
             })}
           {cars?.map((car, index) => {
-            return (
-              <div
-                key={index}
-                className="col-lg-4 mt-4"
-                style={{
-                  position: "relative",
-                  paddingRight: 5,
-                  paddingLeft: 5,
-                  background: "white",
-                }}
-              >
-                <div style={{ position: "relative", height: "250px" }}>
-                  {car?.cover_image ? (
-                    <Image
-                      fill
-                      sizes="(min-width:740px) 674px, calc(95.48vw-18px)"
-                      src={`${baseSpecialImageUrl}${car?.cover_image}`}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <Image
-                      layout="fill"
-                      src={staticImg}
-                      placeholder="blur"
-                      loading="lazy"
-                    />
-                  )}
-                </div>
-                <div>
-                  <div className="row pt-2">
-                    <div
-                      className="col-12"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        fontSize: "12px",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <input type="checkbox" />
-                      <span>Select For Compare</span>
-                      <Button
-                        isTransparent={true}
-                        style={{
-                          color: "black",
-                          width: "150px",
-                          height: "30px",
-                        }}
-                      >
-                        Select For Compare
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="row pt-2">
-                    <div className="col-12" style={{ color: "black" }}>
-                      <Link
-                        href={`/cars/used/${car?.model_year}-${car?.make}-${car?.model}-${car?.id}`}
-                      >
-                        {car?.Vehicle?.model_year} {car?.Vehicle?.make}
-                        {car?.Vehicle?.model}
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12">
-                      <hr />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-6">
-                      <span>Exterior Color</span>
-                    </div>
-                    <div className="col-6">White</div>
-                    <div className="col-6">
-                      <span>Stock #</span>
-                    </div>
-                    <div className="col-6">White</div>
-                    <div className="col-6">
-                      <span>Stock #</span>
-                    </div>
-                    <div className="col-6">1111</div>
-                  </div>
-                </div>
-              </div>
-            );
+            return <Card key={index} car={car} />;
           })}
         </div>
       </Container>
