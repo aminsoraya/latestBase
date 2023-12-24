@@ -227,7 +227,7 @@ const UsedInventory = () => {
                 />
               )}
             </div>
-            <div className="col-lg-2 col-12 mt-3">
+            <div className="col-lg-2 col-12 mt-3" style={{ minHeight: "40px" }}>
               {isLoading ? (
                 <SkeletonLoading />
               ) : (
@@ -283,7 +283,7 @@ const UsedInventory = () => {
                 />
               )}
             </div>
-            <div className="col-lg-2 col-12 mt-3">
+            <div className="col-lg-2 col-12 mt-3" style={{ minHeight: "40px" }}>
               {isLoading ? <SkeletonLoading /> : <Button>Reset</Button>}
             </div>
           </div>
