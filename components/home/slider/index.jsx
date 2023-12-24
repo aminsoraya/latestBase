@@ -9,8 +9,8 @@ import "swiper/css/navigation";
 import { useSliderData } from "@/hooks/actions/api/sliders";
 import useSWR from "swr";
 import { useAppStore } from "@/hooks/store";
-// import Skeleton from "@/components/shared/skeleton";
 import Welcome from "./welcom";
+import { SkeletonLoading } from "@/components/shared/loading";
 
 export default function Slider() {
   let { baseImageUrl, baseUrl, domain } = useAppStore();
@@ -22,7 +22,7 @@ export default function Slider() {
  
   return (
     <>
-      {/* {isLoading && <Skeleton height={500} />} */}
+      {isLoading && <SkeletonLoading height={700} />}
       {data && (
         <div style={{ position: "relative" }}>
           <Swiper

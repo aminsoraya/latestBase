@@ -1,5 +1,6 @@
 import styles from "@/styles/aboutUs.module.scss";
 import Image from "next/image";
+import Link from "@/components/shared/link"
 
 const AboutUs = () => {
   return (
@@ -15,7 +16,8 @@ const AboutUs = () => {
               market and help you to choose the best one based on your needs and
               interests.
             </p>
-            <button>Read More</button>
+           
+            <Link href="/about-us">Read More</Link>
           </div>
         </div>
       </div>

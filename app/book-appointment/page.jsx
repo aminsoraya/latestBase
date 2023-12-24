@@ -35,10 +35,10 @@ const BookAppointment = () => {
             <Image placeholder="blur" src={image} fill />
           </div>
         </div>
-        <div className="row w-100">
+        <div className="row w-100 mt-5">
           <Form />
         </div>
-        <div className="row w-100">
+        <div className="row w-100 mt-5">
           <Slider />
         </div>
       </Container>

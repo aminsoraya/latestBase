@@ -1,8 +1,8 @@
 "use client";
 import styles from "@/styles/bookApply.module.scss";
 import Image from "next/image";
-import Container from "@/components/shared/container";
 import Button from "@/components/shared/button";
+import Link from "@/components/shared/link";
 
 const BookApply = () => {
   const imageUrl =
@@ -33,7 +33,7 @@ const BookApply = () => {
             satisfied.
           </p>
           <div className={styles.button}>
-            <Button>Apply Now</Button>
+            <Link href="/finance-application">Apply Nows</Link>
           </div>
         </div>
         <div
@@ -47,7 +47,7 @@ const BookApply = () => {
             appointment at the time of your convenience .
           </p>
           <div className={styles.button}>
-            <Button>Book Now</Button>
+            <Link href="/book-appointment">Apply Nows</Link>
           </div>
         </div>
       </div>

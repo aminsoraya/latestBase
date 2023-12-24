@@ -1,0 +1,12 @@
+@import "colors";
+.button {
+  background-color: $yellow-dark;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 3px;
+}

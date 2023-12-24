@@ -6,6 +6,8 @@ import StarSvg from "./starSvg";
 import UserSvg from "./userSvg";
 import Container from "@/components/shared/container";
 
+const googleLink =
+  "https://www.google.com/search?q=United+Auto+Sales+ltd&oq=United+Auto+Sales+ltd&aqs=chrome..69i57j0i22i30l9.486j0j7&sourceid=chrome&ie=UTF-8#lrd=0x5485d81f0c1ff64f:0x74b73240c21090b8,1,,,";
 const LatestProduct = () => {
   let reviews = [
     {
@@ -43,7 +45,7 @@ const LatestProduct = () => {
                 modules={[Pagination, Autoplay, Navigation]}
                 navigation={true}
                 autoplay={{
-                  delay: 200500,
+                  delay: 2000,
                   disableOnInteraction: false,
                 }}
                 className=""
@@ -68,9 +70,9 @@ const LatestProduct = () => {
                             {item.content}
                           </div>
                         </div>
-                        <button className={`${styles.button} `}>
-                          Read More
-                        </button>
+                        <div className={`${styles.button} `}>
+                          <a href={googleLink} target="_blank" >Read More</a>
+                        </div>
                       </div>
                     </SwiperSlide>
                   );

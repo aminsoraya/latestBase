@@ -13,7 +13,7 @@
 .transparent {
   background: transparent;
   border-style: solid;
-  border-color: #b29952;
+  border-color: $yellow-dark;
   border-width: 1px;
   padding-bottom: 5px;
   padding-top: 5px;
@@ -21,6 +21,7 @@
   font-size: 13px;
 
   &:hover{
-    background:#b29952;
+    background:$yellow-dark;
   }
 }
+
