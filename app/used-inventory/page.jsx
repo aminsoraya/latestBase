@@ -42,9 +42,15 @@ const initialValues = {
   odometer_low: 0,
   odometer_high: 431000,
 };
+const cardDisplayType = {
+  Horizontal: "Horizontal",
+  Vertical: "Vertical",
+};
 const UsedInventory = () => {
   const [loading, setLoading] = useState(true);
+  const [displayType, setDisplayType] = useState(cardDisplayType.Vertical);
   const [cars, setCars] = useState([]);
+
   const formik = useFormik({
     initialValues: {},
     onSubmit: async (values, { resetForm }) => {
@@ -274,61 +280,63 @@ const UsedInventory = () => {
             </div>
           </div>
         </form>
-        <div className={`row w-100 mb-5 `}>
-          {loading && (
-            <>
-              <div className="col-6 mt-5" style={{ minHeight: "40px" }}>
-                <SkeletonLoading />
+        {!loading&&<div className="row">
+          <div className={`col-12 mt-5 mb-2 ${styles.headerResponse}`}>
+            <span>
+              {cars.length > 0 && <h2>{cars[0].fullSearchCount} Vehicles</h2>}
+            </span>
+          </div>
+          <div className={`col-12  mb-2 ${styles.headerResponse} w-full`}>
+            <span className={styles.sortItems}>
+              Sort: <button>Year</button>
+              <span>|</span>
+              <button>Make</button>
+              <span>|</span>
+              <button>Model</button>
+              <span>|</span>
+              <button>Body Style</button>
+              <span>|</span>
+              <button>Price</button>
+            </span>
+            <span className={styles.sortIcons}>
+              <div onClick={() => setDisplayType(cardDisplayType.Horizontal)}>
+                <PiSquareSplitHorizontalFill />
               </div>
-              <div className="col-12 mt-2" style={{ minHeight: "40px" }}>
-                <SkeletonLoading />
+              <div onClick={() => setDisplayType(cardDisplayType.Vertical)}>
+                <PiSquareSplitVerticalFill />
               </div>
-              {Array.from({ length: 6 }).map((_, index) => {
-                return (
-                  <div className="col-4 mt-5" key={index}>
-                    <SkeletonCardHorizontalLoading />
-                  </div>
-                );
-              })}
-            </>
-          )}
+            </span>
+          </div>
+        </div>}
+        {displayType == cardDisplayType.Vertical && (
+          <div className={`row w-100 mb-5 `}>
+            {loading && (
+              <>
+                <div className="col-6 mt-5" style={{ minHeight: "40px" }}>
+                  <SkeletonLoading />
+                </div>
+                <div className="col-12 mt-2" style={{ minHeight: "40px" }}>
+                  <SkeletonLoading />
+                </div>
+                {Array.from({ length: 6 }).map((_, index) => {
+                  return (
+                    <div className="col-4 mt-5" key={index}>
+                      <SkeletonCardHorizontalLoading />
+                    </div>
+                  );
+                })}
+              </>
+            )}
 
-          {cars.length > 0 && (
-            <>
-              <div className={`col-12 mt-5 mb-2 ${styles.headerResponse}`}>
-                <span>
-                  {cars.length > 0 && (
-                    <h2>{cars[0].fullSearchCount} Vehicles</h2>
-                  )}
-                </span>
-              </div>
-              <div className={`col-12  mb-2 ${styles.headerResponse} w-full`}>
-                <span className={styles.sortItems}>
-                  Sort: <button>Year</button>
-                  <span>|</span>
-                  <button>Make</button>
-                  <span>|</span>
-                  <button>Model</button>
-                  <span>|</span>
-                  <button>Body Style</button>
-                  <span>|</span>
-                  <button>Price</button>
-                </span>
-                <span className={styles.sortIcons}>
-                  <div>
-                    <PiSquareSplitHorizontalFill />
-                  </div>
-                  <div>
-                    <PiSquareSplitVerticalFill />
-                  </div>
-                </span>
-              </div>
-              {cars?.map((car, index) => {
-                return <HorzontalCard key={index} car={car} />;
-              })}
-            </>
-          )}
-        </div>
+            {cars.length > 0 && (
+              <>
+                {cars?.map((car, index) => {
+                  return <HorzontalCard key={index} car={car} />;
+                })}
+              </>
+            )}
+          </div>
+        )}
       </Container>
     </div>
   );
