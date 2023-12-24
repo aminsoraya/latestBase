@@ -5,12 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import staticImg from "@/public/img/default-inventory-image-car-med.png";
 
-const Card = ({ car }) => {
+const Card = ({ car, callback }) => {
   const { baseSpecialImageUrl } = useAppStore();
 
   return (
     <div className="col-lg-4 mt-4">
-      
       <div className={styles.card}>
         <div className={styles.img}>
           {car?.cover_image ? (
@@ -33,10 +32,10 @@ const Card = ({ car }) => {
           <div className="row pt-2 ">
             <div className={`col-12 ${styles.compare}`}>
               <div>
-                <input type="checkbox" />
+                <input type="checkbox" onClick={() => callback(car.id)} />
                 <span>Select For Compare</span>
               </div>
-              <Button isTransparent={true}>Select For Compare</Button>
+              <Button isTransparent={true}>Compare</Button>
             </div>
           </div>
           <div className="row pt-2">
