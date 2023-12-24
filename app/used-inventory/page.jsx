@@ -63,11 +63,9 @@ const UsedInventory = () => {
     const findedCarId = carsId.find((item) => item == id);
 
     if (findedCarId) {
-      console.log("1 ", findedCarId);
       let cars = carsId.filter((s) => s != id);
       setCarsId(cars);
     } else {
-      console.log("2 ", findedCarId);
       setCarsId((state) => [...state, id]);
     }
   };
@@ -99,7 +97,10 @@ const UsedInventory = () => {
                           <span> {car?.Vehicle?.model}</span>
                           <span>{car?.Vehicle?.drive_type}</span>
                         </div>
-                        <IoMdTrash className="mr-2" />
+                        <IoMdTrash
+                          className="mr-2"
+                          onClick={() => handleCarId(id)}
+                        />
                       </div>
                     </div>
                   );
@@ -164,6 +165,7 @@ const UsedInventory = () => {
                 {cars?.map((car, index) => {
                   return (
                     <HorzontalCard
+                      carsId={carsId}
                       key={index}
                       car={car}
                       callback={handleCarId}
@@ -181,6 +183,7 @@ const UsedInventory = () => {
                 {cars?.map((car, index) => {
                   return (
                     <VerticalCard
+                      carIds={carsId}
                       key={index}
                       car={car}
                       callback={handleCarId}

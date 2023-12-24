@@ -6,7 +6,7 @@ import Image from "next/image";
 import staticImg from "@/public/img/default-inventory-image-car-med.png";
 import { IoIosSpeedometer } from "react-icons/io";
 
-const Card = ({ car }) => {
+const Card = ({ car, callback, carsId }) => {
   const { baseSpecialImageUrl } = useAppStore();
 
   return (
@@ -33,7 +33,11 @@ const Card = ({ car }) => {
           <div className="px-2 pb-4 pt-2">
             <div className={`col-12 ${styles.compare}`}>
               <div>
-                <input type="checkbox" onClick={() => callback(car.id)} />
+                <input
+                  type="checkbox"
+                  onClick={() => callback(car.id)}
+                  checked={carsId.findIndex((s) => s == car.id) > -1}
+                />
                 <span>Select For Compare</span>
               </div>
               <Button style={{ width: "100px" }} isTransparent={true}>
