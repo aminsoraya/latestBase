@@ -38,7 +38,7 @@ const Card = ({ car, callback, carsId }) => {
                   onClick={() => callback(car.id)}
                   checked={carsId?.findIndex((s) => s == car.id) > -1}
                   disabled={
-                    carsId.length > 2 &&
+                    carsId?.length > 2 &&
                     carsId?.findIndex((s) => s == car.id) == -1
                   }
                 />

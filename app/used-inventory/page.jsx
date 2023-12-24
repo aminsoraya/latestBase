@@ -202,22 +202,21 @@ const UsedInventory = () => {
               <>
                 {cars?.map((car, index) => {
                   return (
-                    <div key={index}>
-                      <VerticalCard
-                        carIds={carsId}
-                        car={car}
-                        callback={handleCarId}
-                      />
-                      {Array.from({ length: 6 }).map((_, index) => {
+                    <VerticalCard
+                      key={index}
+                      carsId={carsId}
+                      car={car}
+                      callback={handleCarId}
+                    />
+                  );
+                })}
+                {/* {Array.from({ length: 6 }).map((_, index) => {
                         return (
                           <div className="col-4 mt-5" key={index} ref={ref}>
                             <SkeletonCardHorizontalLoading />
                           </div>
                         );
-                      })}
-                    </div>
-                  );
-                })}
+                      })} */}
               </>
             )}
           </div>

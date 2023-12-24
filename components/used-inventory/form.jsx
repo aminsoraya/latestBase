@@ -4,7 +4,6 @@ import DynamicDropdown from "@/components/shared/dynamicDropdown";
 import { DropDownTypes } from "@/components/shared/dynamicDropdown/enumerations";
 import { useFormik } from "formik";
 import styles from "@/styles/usedInventory.module.scss";
-import { useState } from "react";
 import { SkeletonLoading } from "@/components/shared/loading";
 import { useAppStore } from "@/hooks/store";
 import useSWR, { mutate } from "swr";

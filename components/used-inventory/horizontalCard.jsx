@@ -34,7 +34,7 @@ const Card = ({ car, callback, carsId }) => {
               <div>
                 <input
                   type="checkbox"
-                  onClick={() => callback(car.id)}
+                  onChange={() => callback(car.id)}
                   checked={carsId?.findIndex((s) => s == car.id) > -1}
                   disabled={
                     carsId.length > 2 &&

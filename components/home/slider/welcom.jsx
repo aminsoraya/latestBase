@@ -4,8 +4,11 @@ import Container from "@/components/shared/container";
 import { WiDirectionLeft } from "react-icons/wi";
 import styles from "@/styles/welcom.module.scss";
 import Button from "@/components/shared/button";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Welcome = () => {
+  const router = useRouter();
   return (
     <div className={styles.main}>
       <Container>
@@ -25,12 +28,10 @@ const Welcome = () => {
             care. Thank You!
           </p>
           <div className={styles.button}>
-            <Button>
+            <Link href="/used-inventory">
               <span>View Inventory</span>
-              <div className={styles.direction}>
-                <WiDirectionLeft />
-              </div>
-            </Button>
+              <WiDirectionLeft className={styles.direction}/>
+            </Link>
           </div>
         </div>
       </Container>

@@ -1,3 +1,4 @@
+@import "colors";
 .main {
   position: absolute;
   bottom: 0;
@@ -22,12 +23,16 @@
 }
 .direction {
   rotate: 180deg;
-  font-size: 20px;
+  font-size: 30px;
 }
 .button {
   height: 50px;
   margin-top: 20px;
   width: 50%;
+  background-color: $yellow-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 760px) {
