@@ -35,7 +35,11 @@ const Card = ({ car, callback, carsId }) => {
                 <input
                   type="checkbox"
                   onClick={() => callback(car.id)}
-                  checked={carsId.findIndex((s) => s == car.id) > -1}
+                  checked={carsId?.findIndex((s) => s == car.id) > -1}
+                  disabled={
+                    carsId.length > 2 &&
+                    carsId?.findIndex((s) => s == car.id) == -1
+                  }
                 />
                 <span>Select For Compare</span>
               </div>
@@ -55,10 +59,10 @@ const Card = ({ car, callback, carsId }) => {
           <div className="row">
             <div className={`col-12 ${styles.row} ${styles.h12} mt-4`}>
               <span className={styles.price}>
-                Price: ${car.sell_price.toLocaleString()}{" "}
+                Price: ${car?.sell_price?.toLocaleString()}{" "}
               </span>
               <span>
-                Odometer:{car.odometer.toLocaleString()}{" "}
+                Odometer:{car?.odometer?.toLocaleString()}{" "}
                 {car.odometer_type === 1 ? "Mi" : "Km"}
               </span>
             </div>

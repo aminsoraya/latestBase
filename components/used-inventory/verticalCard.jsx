@@ -36,7 +36,11 @@ const Card = ({ car, callback, carsId }) => {
                 <input
                   type="checkbox"
                   onClick={() => callback(car.id)}
-                  checked={carsId.findIndex((s) => s == car.id) > -1}
+                  checked={carsId?.findIndex((s) => s == car.id) > -1}
+                  disabled={
+                    carsId.length > 2 &&
+                    carsId?.findIndex((s) => s == car.id) == -1
+                  }
                 />
                 <span>Select For Compare</span>
               </div>

@@ -15,6 +15,7 @@ import { PiSquareSplitHorizontalFill } from "react-icons/pi";
 import dynamic from "next/dynamic";
 import Form from "@/components/used-inventory/form";
 import { IoMdTrash } from "react-icons/io";
+import { useInView } from "react-intersection-observer";
 
 const VerticalCard = dynamic(() =>
   import("@/components/used-inventory/verticalCard")
@@ -33,31 +34,42 @@ const UsedInventory = () => {
   const [displayType, setDisplayType] = useState(cardDisplayType.Horizontal);
   const [cars, setCars] = useState([]);
   const [carsId, setCarsId] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+
+  useEffect(() => {
+    cars.length > 0 && setCurrentPage((state) => state + 1);
+  }, [inView]);
 
   //base data
   const { setCurrentMenu, baseUrl, domain } = useAppStore();
 
-  let mounted = true;
   useEffect(() => {
     setCurrentMenu({ currentMenu: "/used-inventory" });
-    mounted &&
-      (async () => {
-        setLoading(true);
-        await mutate(
-          "advanceSearch",
-          useContactUs(
-            initialValues,
-            `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=1&limit=10`
-          )
-        )
-          .then((data) => setCars(data))
-          .finally(() => setLoading(false));
-      })();
+  }, []);
 
-    return () => {
-      mounted = false;
-    };
-  }, [baseUrl, domain]);
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      await mutate(
+        "advanceSearch",
+        useContactUs(
+          initialValues,
+          `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
+        )
+      )
+        .then((data) => {
+          cars.length > 0
+            ? setCars((state) => [...state, ...data])
+            : setCars(data);
+        })
+        .finally(() => setLoading(false));
+    })();
+  }, [baseUrl, domain, currentPage]);
 
   const handleCarId = (id) => {
     const findedCarId = carsId.find((item) => item == id);
@@ -165,11 +177,18 @@ const UsedInventory = () => {
                 {cars?.map((car, index) => {
                   return (
                     <HorzontalCard
-                      carsId={carsId}
                       key={index}
+                      carsId={carsId}
                       car={car}
                       callback={handleCarId}
                     />
+                  );
+                })}
+                {Array.from({ length: 6 }).map((_, index) => {
+                  return (
+                    <div className="col-4 mt-5" key={index} ref={ref}>
+                      <SkeletonCardHorizontalLoading />
+                    </div>
                   );
                 })}
               </>
@@ -182,12 +201,20 @@ const UsedInventory = () => {
               <>
                 {cars?.map((car, index) => {
                   return (
-                    <VerticalCard
-                      carIds={carsId}
-                      key={index}
-                      car={car}
-                      callback={handleCarId}
-                    />
+                    <div key={index}>
+                      <VerticalCard
+                        carIds={carsId}
+                        car={car}
+                        callback={handleCarId}
+                      />
+                      {Array.from({ length: 6 }).map((_, index) => {
+                        return (
+                          <div className="col-4 mt-5" key={index} ref={ref}>
+                            <SkeletonCardHorizontalLoading />
+                          </div>
+                        );
+                      })}
+                    </div>
                   );
                 })}
               </>
