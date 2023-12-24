@@ -50,8 +50,13 @@ const Card = ({ car }) => {
           </div>
           <div className="row">
             <div className={`col-12 ${styles.row} ${styles.h12} mt-4`}>
-              <span className={styles.price}> Price: $19,900 </span>
-              <span>Odometer:97,000 Km</span>
+              <span className={styles.price}>
+                Price: ${car.sell_price.toLocaleString()}{" "}
+              </span>
+              <span>
+                Odometer:{car.odometer.toLocaleString()}{" "}
+                {car.odometer_type === 1 ? "Mi" : "Km"}
+              </span>
             </div>
           </div>
           <div className="row">
@@ -62,45 +67,53 @@ const Card = ({ car }) => {
           <div className="row ">
             <div className={`col-12 ${styles.row} ${styles.font14}`}>
               <span>Exterior Color</span>
-              <span>blue</span>
+              <span>{car?.Vehicle?.exterior_color?.name}</span>
             </div>
           </div>
           <div className="row ">
             <div className={`col-12 ${styles.row} ${styles.font14}`}>
               <span>Stock #</span>
-              <span>15MI97B</span>
+              <span>{car?.stock_NO}</span>
             </div>
           </div>
           <div className="row ">
             <div className={`col-12 ${styles.row} ${styles.font14}`}>
               <span>Doors</span>
-              <span>4</span>
+              <span>{car?.Vehicle?.doors}</span>
             </div>
           </div>
           <div className="row ">
             <div className={`col-12 ${styles.row} ${styles.font14}`}>
               <span>Body Style</span>
-              <span>Hatchback</span>
+              <span>{car.Vehicle?.BodyStyle?.name}</span>
             </div>
           </div>
           <div className="row ">
             <div className={`col-12 ${styles.row} ${styles.font14}`}>
               <span>Transmission</span>
-              <span>Automatic</span>
+              <span>{car.Vehicle?.Transmission?.name}</span>
             </div>
           </div>
           <div className="row ">
             <div className={`col-12 ${styles.row} ${styles.font14}`}>
               <span>Drivetrain</span>
-              <span>FWD</span>
+              <span>{car.Vehicle?.drive_type}</span>
             </div>
           </div>
           <div className="row ">
             <div className={`col-12 ${styles.row} ${styles.font14}`}>
               <span>Engine</span>
-              <span>4 Cylinder</span>
+              <span>{car.Vehicle?.engine_cylinders}</span>
             </div>
           </div>
+          {car?.vehicle_site_detail?.vin_number && (
+            <div className="row ">
+              <div className={`col-12 ${styles.row} ${styles.font14}`}>
+                <span>Vin</span>
+                <span>{car.Vehicle?.vin_number}</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
