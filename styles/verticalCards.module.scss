@@ -5,12 +5,11 @@
   color: $white;
 }
 .card {
-  width: 99%;
   background: $white;
   color: balck;
   .img {
     position: relative;
-    height: 250px;
+    height: 200px;
   }
   .compare {
     display: flex;
@@ -84,4 +83,8 @@
       cursor: pointer;
     }
   }
+}
+.bottonRight{
+  display: flex;
+  justify-content: end;
 }

@@ -36,7 +36,9 @@ const Card = ({ car }) => {
                 <input type="checkbox" />
                 <span>Select For Compare</span>
               </div>
-              <Button style={{width:"100px"}} isTransparent={true}>Compare</Button>
+              <Button style={{ width: "100px" }} isTransparent={true}>
+                Compare
+              </Button>
             </div>
           </div>
         </div>
@@ -60,7 +62,7 @@ const Card = ({ car }) => {
             </h2>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-3">
           <div className="col-9">
             <span>
               <IoIosSpeedometer />
@@ -133,6 +135,19 @@ const Card = ({ car }) => {
               </div>
               <div className={`col-6`}>
                 <span>{car?.Vehicle?.engine_cylinders}</span>
+              </div>
+            </div>
+          </div>
+          <div className={`col-4`}>
+            <div className={`row ${styles.items} mt-2`}>
+              <div className={`col-12 mt-2 ${styles.bottonRight}`}>
+                <Button>View Details</Button>
+              </div>
+              <div className={`col-12 mt-2 ${styles.bottonRight}`}>
+                <Button>Contact Us</Button>
+              </div>
+              <div className={`col-12 mt-2 ${styles.bottonRight}`}>
+                <Button>Text Us Now</Button>
               </div>
             </div>
           </div>
