@@ -15,9 +15,17 @@ import { useFormik } from "formik";
 import Button from "@/components/shared/button";
 import { IoSearch } from "react-icons/io5";
 import { useContactUs } from "@/hooks/actions/api/contactUs";
-import HorzontalCard from "@/components/used-inventory/horizontalCard";
 import { PiSquareSplitVerticalFill } from "react-icons/pi";
 import { PiSquareSplitHorizontalFill } from "react-icons/pi";
+import dynamic from "next/dynamic";
+
+const VerticalCard = dynamic(() =>
+  import("@/components/used-inventory/verticalCard")
+);
+
+const HorzontalCard = dynamic(() =>
+  import("@/components/used-inventory/horizontalCard")
+);
 
 const initialValues = {
   fuel_type: "",
@@ -48,7 +56,7 @@ const cardDisplayType = {
 };
 const UsedInventory = () => {
   const [loading, setLoading] = useState(true);
-  const [displayType, setDisplayType] = useState(cardDisplayType.Vertical);
+  const [displayType, setDisplayType] = useState(cardDisplayType.Horizontal);
   const [cars, setCars] = useState([]);
 
   const formik = useFormik({
@@ -280,35 +288,37 @@ const UsedInventory = () => {
             </div>
           </div>
         </form>
-        {!loading&&<div className="row">
-          <div className={`col-12 mt-5 mb-2 ${styles.headerResponse}`}>
-            <span>
-              {cars.length > 0 && <h2>{cars[0].fullSearchCount} Vehicles</h2>}
-            </span>
+        {!loading && (
+          <div className="row">
+            <div className={`col-12 mt-5 mb-2 ${styles.headerResponse}`}>
+              <span>
+                {cars.length > 0 && <h2>{cars[0].fullSearchCount} Vehicles</h2>}
+              </span>
+            </div>
+            <div className={`col-12  mb-2 ${styles.headerResponse} w-full`}>
+              <span className={styles.sortItems}>
+                Sort: <button>Year</button>
+                <span>|</span>
+                <button>Make</button>
+                <span>|</span>
+                <button>Model</button>
+                <span>|</span>
+                <button>Body Style</button>
+                <span>|</span>
+                <button>Price</button>
+              </span>
+              <span className={styles.sortIcons}>
+                <div onClick={() => setDisplayType(cardDisplayType.Horizontal)}>
+                  <PiSquareSplitHorizontalFill />
+                </div>
+                <div onClick={() => setDisplayType(cardDisplayType.Vertical)}>
+                  <PiSquareSplitVerticalFill />
+                </div>
+              </span>
+            </div>
           </div>
-          <div className={`col-12  mb-2 ${styles.headerResponse} w-full`}>
-            <span className={styles.sortItems}>
-              Sort: <button>Year</button>
-              <span>|</span>
-              <button>Make</button>
-              <span>|</span>
-              <button>Model</button>
-              <span>|</span>
-              <button>Body Style</button>
-              <span>|</span>
-              <button>Price</button>
-            </span>
-            <span className={styles.sortIcons}>
-              <div onClick={() => setDisplayType(cardDisplayType.Horizontal)}>
-                <PiSquareSplitHorizontalFill />
-              </div>
-              <div onClick={() => setDisplayType(cardDisplayType.Vertical)}>
-                <PiSquareSplitVerticalFill />
-              </div>
-            </span>
-          </div>
-        </div>}
-        {displayType == cardDisplayType.Vertical && (
+        )}
+        {displayType == cardDisplayType.Horizontal && (
           <div className={`row w-100 mb-5 `}>
             {loading && (
               <>
@@ -332,6 +342,17 @@ const UsedInventory = () => {
               <>
                 {cars?.map((car, index) => {
                   return <HorzontalCard key={index} car={car} />;
+                })}
+              </>
+            )}
+          </div>
+        )}
+        {displayType == cardDisplayType.Vertical && (
+          <div className={`row w-100 mb-5 `}>
+            {cars.length > 0 && (
+              <>
+                {cars?.map((car, index) => {
+                  return <VerticalCard key={index} car={car} />;
                 })}
               </>
             )}
