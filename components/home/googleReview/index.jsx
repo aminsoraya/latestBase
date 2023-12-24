@@ -59,11 +59,9 @@ const LatestProduct = () => {
                             <UserSvg />
                             <span>{item.src}</span>
                             <div className={`${styles.star} `}>
-                              <StarSvg />
-                              <StarSvg />
-                              <StarSvg />
-                              <StarSvg />
-                              <StarSvg />
+                              {Array.from({ length: 5 }).map((_, index) => {
+                                return <StarSvg key={index} />
+                              })}
                             </div>
                           </div>
                           <div className={`${styles.text} `}>
@@ -71,7 +69,9 @@ const LatestProduct = () => {
                           </div>
                         </div>
                         <div className={`${styles.button} `}>
-                          <a href={googleLink} target="_blank" >Read More</a>
+                          <a href={googleLink} target="_blank">
+                            Read More
+                          </a>
                         </div>
                       </div>
                     </SwiperSlide>

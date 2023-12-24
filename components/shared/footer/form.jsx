@@ -109,8 +109,8 @@ const SubmitForm = (props) => {
               onChange={formit.handleChange}
             />
           </div>
-          <div className="col-lg-12 mh-100" style={{ height: "40px" }}>
-            <Button className="w-32 font-bold">Submit</Button>
+          <div className="col-lg-12 mh-100 pt-1" style={{ height: "40px" }}>
+            <Button type="submit"  >Submit</Button>
           </div>
         </div>
       </form>
