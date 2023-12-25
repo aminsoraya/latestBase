@@ -11,6 +11,7 @@ import { useVehicles } from "@/hooks/actions/api/vehicles";
 import { useEffect } from "react";
 import { usePostMethod } from "@/hooks/actions/api/post";
 import { toast } from "react-toastify";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 export const initialValues = {
   fuel_type: "",
@@ -37,6 +38,10 @@ export const initialValues = {
 };
 
 const Form = (props) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathName = usePathname();
+
   //base data
   const { baseUrl, domain, setAdvancedSearchData } = useAppStore();
 
@@ -52,14 +57,23 @@ const Form = (props) => {
   }, [advancedSearchData]);
 
   const formik = useFormik({
-    initialValues: {},
+    initialValues,
     onSubmit: async (values, { resetForm }) => {
       props.setLoading(true);
+
+      let _keys = Object.keys(values);
+      let _values = Object.values(values);
+      const params = new URLSearchParams();
+
+      _keys.forEach((item, index) => {
+        params.set(item, _values[index]);
+        router.replace(`${pathName}?${params}`, { scroll: false });
+      });
 
       await mutate(
         "advanceSearch",
         usePostMethod(
-          initialValues,
+          values,
           `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=1&limit=10`
         )
       )
@@ -80,7 +94,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Make"
               type={DropDownTypes.inventory_makes}
-              callback={(val) =>console.log(val)}
+              callback={(val) => formik.setFieldValue("make", val)}
             />
           )}
         </div>
@@ -231,7 +245,11 @@ const Form = (props) => {
           )}
         </div>
         <div className="col-lg-2 col-12 mt-3" style={{ minHeight: "40px" }}>
-          {isLoading ? <SkeletonLoading /> : <Button>Reset</Button>}
+          {isLoading ? (
+            <SkeletonLoading />
+          ) : (
+            <Button onClick={() => formik.resetForm()}>Reset</Button>
+          )}
         </div>
       </div>
     </form>
