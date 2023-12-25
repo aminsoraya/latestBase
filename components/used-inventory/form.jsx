@@ -41,6 +41,7 @@ const Form = (props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
+  const params = new URLSearchParams(searchParams);
 
   //base data
   const { baseUrl, domain, setAdvancedSearchData } = useAppStore();
@@ -84,6 +85,11 @@ const Form = (props) => {
         });
     },
   });
+
+  useEffect(() => {
+    console.log("paramas ", params);
+  }, [params]);
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className={`row w-100 ${styles.dropDown}`}>
