@@ -9,7 +9,7 @@ import { useAppStore } from "@/hooks/store";
 import useSWR, { mutate } from "swr";
 import { useVehicles } from "@/hooks/actions/api/vehicles";
 import { useEffect } from "react";
-import { useContactUs } from "@/hooks/actions/api/contactUs";
+import { usePostMethod } from "@/hooks/actions/api/post";
 import { toast } from "react-toastify";
 
 export const initialValues = {
@@ -58,7 +58,7 @@ const Form = (props) => {
 
       await mutate(
         "advanceSearch",
-        useContactUs(
+        usePostMethod(
           initialValues,
           `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=1&limit=10`
         )
@@ -80,7 +80,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Make"
               type={DropDownTypes.inventory_makes}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) =>console.log(val)}
             />
           )}
         </div>
@@ -91,7 +91,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Min Year"
               type={DropDownTypes.inventory_minYear}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Minyear", val)}
             />
           )}
         </div>
@@ -102,7 +102,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Max Year"
               type={DropDownTypes.inventory_maxYear}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Maxyear", val)}
             />
           )}
         </div>
@@ -113,7 +113,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Model"
               type={DropDownTypes.inventory_maxYear}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("model", val)}
             />
           )}
         </div>
@@ -124,7 +124,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Body Style"
               type={DropDownTypes.inventory_bodyStyle}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Bodystyle", val)}
             />
           )}
         </div>
@@ -137,7 +137,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Color"
               type={DropDownTypes.inventory_Color}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Exteriorcolor", val)}
             />
           )}
         </div>
@@ -148,7 +148,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Min Price"
               type={DropDownTypes.inventory_MinPrice}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("MinPrice", val)}
             />
           )}
         </div>
@@ -159,7 +159,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Max Price"
               type={DropDownTypes.inventory_MaxPrice}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("MaxPrice", val)}
             />
           )}
         </div>
@@ -170,7 +170,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Transmission"
               type={DropDownTypes.transmission}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Transmission", val)}
             />
           )}
         </div>

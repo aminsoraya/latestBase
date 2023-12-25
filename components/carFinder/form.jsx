@@ -5,7 +5,7 @@ import TextArea from "@/components/shared/textArea";
 import Vehicle from "@/components/shared/vehicle";
 import { useFormik } from "formik";
 import { mutate } from "swr";
-import { useContactUs } from "@/hooks/actions/api/contactUs";
+import { usePostMethod } from "@/hooks/actions/api/post";
 import { toast } from "react-toastify";
 import { useAppStore } from "@/hooks/store";
 import { DropDownTypes } from "../shared/dynamicDropdown/enumerations";
@@ -18,7 +18,7 @@ const PersonalInformationForm = () => {
     onSubmit: async (values, { resetForm }) => {
       let { status, message } = await mutate(
         "appraiseMyTrade",
-        useContactUs(
+        usePostMethod(
           values,
           `${baseUrl}/api/dealerweb/valueyourtrade/add/${domain}`
         )

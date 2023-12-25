@@ -1,4 +1,6 @@
-export const useContactUs = async (data, url) => {
+import axios from "axios";
+
+export const usePostMethod = async (data, url) => {
   const requestOptions = {
     method: "POST",
     headers: {

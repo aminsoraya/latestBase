@@ -1,7 +1,7 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 
-const BodyStyle = () => {
+const BodyStyle = (props) => {
   const {
     advancedSearchData: { vehicleBodyStyle_full },
   } = useAppStore();
@@ -11,7 +11,11 @@ const BodyStyle = () => {
   return bodyStyle
     .sort((a, b) => a - b)
     .map((value, index) => (
-      <span key={index} className={styles.item}>
+      <span
+        key={index}
+        className={styles.item}
+        onClick={() => props.callback({ key: value, alias: value })}
+      >
         {value}
       </span>
     ));

@@ -2,7 +2,7 @@ import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useEffect, useState } from "react";
 
-const InventoryMaxKm = () => {
+const InventoryMaxKm = (props) => {
   const {
     advancedSearchData: { odometerKMRange, odometerMIRange },
   } = useAppStore();
@@ -12,7 +12,11 @@ const InventoryMaxKm = () => {
   return (odometerType == 2 ? odometerKMRange : odometerMIRange)
     ?.sort((a, b) => b - a)
     ?.map((value, index) => (
-      <span key={index} className={styles.item}>
+      <span
+        key={index}
+        className={styles.item}
+        onClick={() => props.callback({ key: value, alias: value })}
+      >
         {value.toLocaleString()}
       </span>
     ));

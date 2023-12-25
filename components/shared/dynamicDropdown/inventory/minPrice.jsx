@@ -2,7 +2,7 @@ import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useState } from "react";
 
-const MinPrice = () => {
+const MinPrice = (props) => {
   const { advancedSearchData } = useAppStore();
 
   const [prices] = useState(advancedSearchData?.priceRange);
@@ -10,7 +10,11 @@ const MinPrice = () => {
   return prices
     .sort((a, b) => a - b)
     .map((value, index) => (
-      <span key={index} className={styles.item}>
+      <span
+        key={index}
+        className={styles.item}
+        onClick={() => props.callback({ key: value, alias: value })}
+      >
         {value.toLocaleString()}
       </span>
     ));

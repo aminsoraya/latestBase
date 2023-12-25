@@ -9,7 +9,7 @@ import {
   SkeletonCardHorizontalLoading,
   SkeletonLoading,
 } from "@/components/shared/loading";
-import { useContactUs } from "@/hooks/actions/api/contactUs";
+import { usePostMethod } from "@/hooks/actions/api/post";
 import { PiSquareSplitVerticalFill } from "react-icons/pi";
 import { PiSquareSplitHorizontalFill } from "react-icons/pi";
 import dynamic from "next/dynamic";
@@ -37,7 +37,6 @@ const UsedInventory = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { ref, inView } = useInView({
-    /* Optional options */
     threshold: 0,
   });
 
@@ -53,12 +52,11 @@ const UsedInventory = () => {
   }, []);
 
   useEffect(() => {
-    console.log("currentPage ", currentPage);
     (async () => {
       setLoading(true);
       await mutate(
         "advanceSearch",
-        useContactUs(
+        usePostMethod(
           initialValues,
           `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
         )

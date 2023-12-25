@@ -3,7 +3,7 @@ import Input from "@/components/shared/input";
 import TextArea from "@/components/shared/textArea";
 import { useFormik } from "formik";
 import { mutate } from "swr";
-import { useContactUs } from "@/hooks/actions/api/contactUs";
+import { usePostMethod } from "@/hooks/actions/api/post";
 import { toast } from "react-toastify";
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/textUsNow.module.scss";
@@ -16,7 +16,7 @@ const TextUsNowForm = () => {
     onSubmit: async (values, { resetForm }) => {
       let { status, message } = await mutate(
         "textUsNow",
-        useContactUs(values, `${baseUrl}/api/dealerweb/textus/add/${domain}`)
+        usePostMethod(values, `${baseUrl}/api/dealerweb/textus/add/${domain}`)
       );
 
       if (status != "fail") {

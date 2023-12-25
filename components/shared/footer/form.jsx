@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { mutate } from "swr";
-import { useContactUs } from "@/hooks/actions/api/contactUs";
+import { usePostMethod } from "@/hooks/actions/api/post";
 import { useAppStore } from "@/hooks/store";
 import { toast } from "react-toastify";
 import Input from "../input";
@@ -27,7 +27,7 @@ const SubmitForm = (props) => {
       let data = { ...values, frk_midv_id };
       let { textus } = await mutate(
         "contactUs",
-        useContactUs(data, `${baseUrl}/api/dealerweb/textus/add/${domain}`)
+        usePostMethod(data, `${baseUrl}/api/dealerweb/textus/add/${domain}`)
       );
       if (textus) {
         toast.success("Successfully Done");
@@ -110,7 +110,7 @@ const SubmitForm = (props) => {
             />
           </div>
           <div className="col-lg-12 mh-100 pt-1" style={{ height: "40px" }}>
-            <Button type="submit"  >Submit</Button>
+            <Button type="submit">Submit</Button>
           </div>
         </div>
       </form>
