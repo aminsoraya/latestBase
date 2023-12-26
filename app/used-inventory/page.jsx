@@ -16,6 +16,7 @@ import dynamic from "next/dynamic";
 import Form from "@/components/used-inventory/form";
 import { IoMdTrash } from "react-icons/io";
 import { useInView } from "react-intersection-observer";
+import useInventoryUrl from "@/hooks/actions/useInventoryUrl";
 
 const VerticalCard = dynamic(() =>
   import("@/components/used-inventory/verticalCard")
@@ -30,11 +31,13 @@ const cardDisplayType = {
   Vertical: "Vertical",
 };
 const UsedInventory = () => {
-  const [loading, setLoading] = useState(true);
+  //base data
+  const { setCurrentMenu, baseUrl, domain } = useAppStore();
   const [displayType, setDisplayType] = useState(cardDisplayType.Horizontal);
-  const [cars, setCars] = useState([]);
   const [carsId, setCarsId] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const { loading, data } = useInventoryUrl();
+  const [cars, setCars] = useState([]);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -44,16 +47,16 @@ const UsedInventory = () => {
     cars.length > 0 && setCurrentPage((state) => state + 1);
   }, [inView]);
 
-  //base data
-  const { setCurrentMenu, baseUrl, domain } = useAppStore();
-
   useEffect(() => {
     setCurrentMenu({ currentMenu: "/used-inventory" });
   }, []);
+  useEffect(() => {
+    setCars(data);
+  }, [data]);
 
+  //infinite scroling
   useEffect(() => {
     (async () => {
-      setLoading(true);
       await mutate(
         "advanceSearch",
         usePostMethod(
@@ -84,12 +87,7 @@ const UsedInventory = () => {
   return (
     <div className={styles.main}>
       <Container>
-        <Form
-          setCars={(cars) => {
-            setCars(cars);
-          }}
-          setLoading={(loading) => setLoading(loading)}
-        />
+        <Form />
         {!loading && (
           <>
             {carsId.length > 0 && (

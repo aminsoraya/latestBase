@@ -11,7 +11,7 @@ const Map = () => {
       height="320"
       className="border-0 w-100 p-0 m-0"
       aria-hidden="false"
-      tabindex="0"
+      tabIndex="0"
       id="iframe"
     />
   );

@@ -10,38 +10,36 @@ import useSWR, { mutate } from "swr";
 import { useVehicles } from "@/hooks/actions/api/vehicles";
 import { useEffect } from "react";
 import { usePostMethod } from "@/hooks/actions/api/post";
-import { toast } from "react-toastify";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { OBJECT } from "swr/_internal";
 
 export const initialValues = {
-  fuel_type: "",
-  body_style: "",
-  engine_cylinders: "",
-  year_end: 2024,
-  price_low: -1,
-  price_high: 3006401,
-  odometer_type: 2,
+  Fueltype: "",
+  Bodystyle: "",
+  EngineCylinder: "",
+  Maxyear: "",
+  MinPrice: "",
+  MaxPrice: "",
+  odometer_type: "",
   make: "",
   model: "",
-  transmission: "",
-  drive_train: "",
-  doors: "",
-  interior_color: "",
-  Exterior_color: "",
-  sortKind: { kind: "", type: null, order: 0 },
-  sold: "",
-  is_coming_soon: "",
-  is_it_special: null,
-  year_start: 0,
-  odometer_low: 0,
-  odometer_high: 431000,
+  Transmission: "",
+  // drive_train: "",
+  Doors: "",
+  Interior_color: "",
+  Exteriorcolor: "",
+  // sold: "",
+  // is_coming_soon: "",
+  // is_it_special: "",
+  Minyear: "",
+  Minodometer: "",
+  Maxodometer: "",
 };
 
 const Form = (props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
-  const params = new URLSearchParams(searchParams);
 
   //base data
   const { baseUrl, domain, setAdvancedSearchData } = useAppStore();
@@ -59,36 +57,17 @@ const Form = (props) => {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: async (values, { resetForm }) => {
-      props.setLoading(true);
-
+    onSubmit: (values, { resetForm }) => {
       let _keys = Object.keys(values);
       let _values = Object.values(values);
-      const params = new URLSearchParams();
+      const params = new URLSearchParams(searchParams);
 
       _keys.forEach((item, index) => {
         params.set(item, _values[index]);
-        router.replace(`${pathName}?${params}`, { scroll: false });
+        router.replace(`${pathName}?${params.toString()}`, { scroll: false });
       });
-
-      await mutate(
-        "advanceSearch",
-        usePostMethod(
-          values,
-          `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=1&limit=10`
-        )
-      )
-        .then((response) => props.setCars(response))
-        .finally(() => props.setLoading(false))
-        .catch((error) => {
-          toast.error(error.message);
-        });
     },
   });
-
-  useEffect(() => {
-    console.log("paramas ", params);
-  }, [params]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -132,7 +111,7 @@ const Form = (props) => {
           ) : (
             <DynamicDropdown
               placeholder="Any Model"
-              type={DropDownTypes.inventory_maxYear}
+              type={DropDownTypes.inventory_model}
               callback={(val) => formik.setFieldValue("model", val)}
             />
           )}
@@ -213,7 +192,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Fuel Type"
               type={DropDownTypes.inventory_FuelType}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Fueltype", val)}
             />
           )}
         </div>
@@ -224,7 +203,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Min Km"
               type={DropDownTypes.inventory_MinKm}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Minodometer", val)}
             />
           )}
         </div>
@@ -235,7 +214,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Max Km"
               type={DropDownTypes.inventory_MaxKm}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("Maxodometer", val)}
             />
           )}
         </div>
@@ -246,7 +225,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Engine"
               type={DropDownTypes.inventory_Engine}
-              callback={(val) => formik.setFieldValue("loanTerm", val)}
+              callback={(val) => formik.setFieldValue("EngineCylinder", val)}
             />
           )}
         </div>

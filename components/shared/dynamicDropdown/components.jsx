@@ -116,6 +116,10 @@ const InventoryColorComponent = dynamic(() => import("./inventory/color"), {
   loading: () => <Loading />,
 });
 
+const InventoryModels = dynamic(() => import("./inventory/models"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
 export {
   InventoryMakesComponent,
   MonthsComponent,
@@ -140,4 +144,5 @@ export {
   InventoryMaxPriceComponent,
   InventoryMinPriceComponent,
   InventoryColorComponent,
+  InventoryModels,
 };

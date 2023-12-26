@@ -9,7 +9,9 @@ export const usePostMethod = async (data, url) => {
     body: JSON.stringify(data),
   };
 
-  let response = await fetch(url, requestOptions).then((data) => data.json());
+  let response = await fetch(url, requestOptions, { cache: "no-store" }).then(
+    (data) => data.json()
+  );
 
   return response;
 };

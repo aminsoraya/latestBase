@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import * as Dynamic from "./components";
 import { DropDownTypes } from "./enumerations";
 
-
 const DynamicDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(undefined);
@@ -133,6 +132,10 @@ const DynamicDropdown = (props) => {
             callback={(item) => setSelected(item)}
           />
         );
+      case DropDownTypes.inventory_model:
+        return (
+          <Dynamic.InventoryModels callback={(item) => setSelected(item)} />
+        );
     }
   };
 
@@ -170,7 +173,9 @@ const DynamicDropdown = (props) => {
             placeholder={props.placeholder}
             className="input-trasparent"
             onClick={() => setIsOpen((state) => !state)}
-            value={`${(selected?.alias || props.placeholder).toLocaleString()} ${
+            value={`${(
+              selected?.alias || props.placeholder
+            ).toLocaleString()} ${
               (props.type == DropDownTypes.months && selected?.key) || ""
             }`}
           />
