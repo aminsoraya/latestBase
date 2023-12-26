@@ -37,6 +37,7 @@ const UsedInventory = () => {
   const [carsId, setCarsId] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const { loading, data } = useInventoryUrl();
+  const [infiniteLoading, setInfiniteLoading] = useState();
   const [cars, setCars] = useState([]);
 
   const { ref, inView } = useInView({
@@ -57,6 +58,7 @@ const UsedInventory = () => {
   //infinite scroling
   useEffect(() => {
     (async () => {
+      setInfiniteLoading(true);
       await mutate(
         "advanceSearch",
         usePostMethod(
@@ -69,7 +71,7 @@ const UsedInventory = () => {
             ? setCars((state) => [...state, ...data])
             : setCars(data);
         })
-        .finally(() => setLoading(false));
+        .finally(() => setInfiniteLoading(false));
     })();
   }, [baseUrl, domain, currentPage]);
 
