@@ -4,9 +4,21 @@ import Button from "@/components/shared/button";
 import Link from "next/link";
 import Image from "next/image";
 import staticImg from "@/public/img/default-inventory-image-car-med.png";
+import { useEffect, useState } from "react";
 
 const Card = ({ car, callback, carsId }) => {
   const { baseSpecialImageUrl } = useAppStore();
+  const [makeSlug, setMakeSlug] = useState({
+    make: "",
+    model: "",
+  });
+
+  useEffect(() => {
+    setMakeSlug(() => ({
+      make: car?.Vehicle?.make,
+      model: car?.Vehicle?.model,
+    }));
+  }, []);
 
   return (
     <div className="col-lg-4 mt-4">
@@ -27,6 +39,15 @@ const Card = ({ car, callback, carsId }) => {
               loading="lazy"
             />
           )}
+          <div
+            className={`p-0 m-0 col-12 w-100 justify-content-center align-items-center d-flex ${styles.viewDetails}`}
+          >
+            <Link
+              href={`/used-inventory-details/${car?.Vehicle?.model_year}-${makeSlug?.make}-${makeSlug?.model}-${car?.id}`}
+            >
+              View Details
+            </Link>
+          </div>
         </div>
         <div className="px-2 pb-4 pt-2">
           <div className="row pt-2 ">

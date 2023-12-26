@@ -51,6 +51,17 @@
     font-size: 13px;
   }
 }
+.viewDetails {
+  color: white;
+  background: black;
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  opacity: 0.9;
+  &:hover {
+    color: blue;
+  }
+}
 
 .headerResponse {
   color: white;
@@ -98,7 +109,7 @@
     padding-left: 10px;
     min-height: 40px;
     border-radius: 5px;
-    >svg{
+    > svg {
       color: red;
       font-size: 20px;
     }
