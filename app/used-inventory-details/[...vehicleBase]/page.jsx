@@ -9,7 +9,7 @@ import { useVehicles } from "@/hooks/actions/api/vehicles";
 import Gallery from "@/components/used-inventory-detail/gallery";
 import Table from "@/components/used-inventory-detail/table";
 import { SkeletonLoading } from "@/components/shared/loading";
-import Link from "@/components/shared/link"
+import Link from "@/components/shared/link";
 
 const Details = ({ params }) => {
   const { baseUrl, domain } = useAppStore();
@@ -40,14 +40,34 @@ const Details = ({ params }) => {
                   className={`${styles.head} pl-2 col-lg-3 pr-2 col-md-6 d-flex justify-content-center col-xs-12`}
                 >
                   <div style={{ width: "90%" }}>
-                    <Button> Previous Vehicle</Button>
+                    <Link
+                      href={`/used-inventory-details/${
+                        single?.previousVehicle?.Vehicle?.model_year
+                      }-${single?.previousVehicle?.Vehicle?.make
+                        .replaceAll(/-/g, "")
+                        .toLowerCase()}-${single?.previousVehicle?.Vehicle?.model
+                        .replaceAll(/-/g, "")
+                        .toLowerCase()}-${single?.previousVehicle?.id}`}
+                    >
+                      Previous Vehicle
+                    </Link>
                   </div>
                 </div>
                 <div
                   className={`${styles.head} pl-2 col-lg-3 pr-2 col-md-6 d-flex justify-content-center col-xs-12`}
                 >
                   <div style={{ width: "90%" }}>
-                    <Button>Next Vehicle</Button>
+                    <Link
+                      href={`/used-inventory-details/${
+                        single?.nextVehicle?.Vehicle?.model_year
+                      }-${single?.nextVehicle?.Vehicle?.make
+                        .replaceAll(/-/g, "")
+                        .toLowerCase()}-${single?.nextVehicle?.Vehicle?.model
+                        .replaceAll(/-/g, "")
+                        .toLowerCase()}-${single?.nextVehicle?.id}`}
+                    >
+                      Next Vehicle
+                    </Link>
                   </div>
                 </div>
               </div>
