@@ -1,16 +1,13 @@
 import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { useAppStore } from "@/hooks/store";
 import "./styles.css";
+import Image from "next/image";
 
-// import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 export default function App(props) {
@@ -35,7 +32,8 @@ export default function App(props) {
         {images?.map((item, index) => {
           return (
             <SwiperSlide>
-              <img
+              <Image
+              fill
                 src={`${baseSpecialImageUrl}${item.media_src}`}
                 key={index}
               />
@@ -56,7 +54,8 @@ export default function App(props) {
         {images?.map((item, index) => {
           return (
             <SwiperSlide>
-              <img
+              <Image
+              fill
                 src={`${baseSpecialImageUrl}${item.media_src}`}
                 key={index}
               />
