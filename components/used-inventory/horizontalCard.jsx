@@ -15,8 +15,8 @@ const Card = ({ car, callback, carsId }) => {
 
   useEffect(() => {
     setMakeSlug(() => ({
-      make: car?.Vehicle?.make,
-      model: car?.Vehicle?.model,
+      make: car?.Vehicle?.make.replaceAll(/-/g, "").toLowerCase(),
+      model: car?.Vehicle?.model.replaceAll(/-/g, "").toLowerCase(),
     }));
   }, []);
 

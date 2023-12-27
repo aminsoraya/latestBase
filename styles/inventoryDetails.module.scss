@@ -2,7 +2,18 @@
 
 .main {
   min-height: 100vh;
-  background: $gray-normal;
+  background: $gray-slow;
   color: white;
   padding-top: 100px;
+  .head {
+    height: 40px;
+    font-size: 13px;
+    button{
+        font-weight: 300;
+       svg{
+        margin-right: 10px;
+        font-size: 20px;
+       }
+    }
+  }
 }
