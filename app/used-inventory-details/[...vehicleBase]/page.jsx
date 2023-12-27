@@ -95,30 +95,38 @@ const Details = ({ params }) => {
                   </p>
                   <small className="w-full text-center">+ taxes and fees</small>
                 </strong>
-                <div className="row">
-                  <div className={`col-12 ${styles.row} mt-2`}>
-                    <Button data-toggle="modal" data-target="#exampleModal">
-                      <strong>Request Information</strong>
-                    </Button>
-                  </div>
-                  <div className={`col-12 ${styles.row} mt-2`}>
-                    <Link
-                      isTransparent={true}
-                      href={`/finance-application?selected_vehicle=${single?.id}`}
-                    >
-                      <strong>Book A Test Drive</strong>
-                    </Link>
-                  </div>
-                  <div className={`col-12 ${styles.row} mt-2`}>
-                    <Button isTransparent={true}>
-                      <strong>Apply For Financing</strong>
-                    </Button>
-                  </div>
-                  <div className={`col-12 ${styles.row} mt-2`}>
-                    <Button isTransparent={true}>
-                      <strong>Print Window Sticker</strong>
-                    </Button>
-                  </div>
+              </div>
+            </div>
+            <div className="row mb-3">
+              <div className="col-9">
+                <h5>Description</h5>
+                <span style={{fontSize:"13px"}}
+                  dangerouslySetInnerHTML={{ __html: single?.comment }}
+                ></span>
+              </div>
+              <div className="col-3">
+                <div className={`col-12 ${styles.row} `}>
+                  <Button data-toggle="modal" data-target="#exampleModal">
+                    <strong>Request Information</strong>
+                  </Button>
+                </div>
+                <div className={`col-12 ${styles.row} mt-2`}>
+                  <Link
+                    isTransparent={true}
+                    href={`/finance-application?selected_vehicle=${single?.id}`}
+                  >
+                    <strong>Book A Test Drive</strong>
+                  </Link>
+                </div>
+                <div className={`col-12 ${styles.row} mt-2`}>
+                  <Button isTransparent={true}>
+                    <strong>Apply For Financing</strong>
+                  </Button>
+                </div>
+                <div className={`col-12 ${styles.row} mt-2`}>
+                  <Button isTransparent={true}>
+                    <strong>Print Window Sticker</strong>
+                  </Button>
                 </div>
               </div>
             </div>
