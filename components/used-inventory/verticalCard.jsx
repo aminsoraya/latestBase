@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import staticImg from "@/public/img/default-inventory-image-car-med.png";
 import { IoIosSpeedometer } from "react-icons/io";
+import ManualLink from "@/components/shared/link";
 
 const Card = ({ car, callback, carsId }) => {
   const { baseSpecialImageUrl } = useAppStore();
@@ -44,9 +45,9 @@ const Card = ({ car, callback, carsId }) => {
                 />
                 <span>Select For Compare</span>
               </div>
-              <Button style={{ width: "100px" }} isTransparent={true}>
+              <ManualLink href={`/compare/${carsId.join(",")}`} isTransparent={true}>
                 Compare
-              </Button>
+              </ManualLink>
             </div>
           </div>
         </div>
@@ -74,8 +75,8 @@ const Card = ({ car, callback, carsId }) => {
           <div className="col-9">
             <span>
               <IoIosSpeedometer />
-              {car.odometer.toLocaleString()}{" "}
-              {car.odometer_type === 1 ? "Mi" : "Km"}
+              {car?.odometer?.toLocaleString()}{" "}
+              {car?.odometer_type === 1 ? "Mi" : "Km"}
             </span>
           </div>
           <div className={`col-4`}>

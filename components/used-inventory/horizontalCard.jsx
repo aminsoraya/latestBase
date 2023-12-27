@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import staticImg from "@/public/img/default-inventory-image-car-med.png";
 import { useEffect, useState } from "react";
+import ManualLink from "@/components/shared/link";
 
 const Card = ({ car, callback, carsId }) => {
   const { baseSpecialImageUrl } = useAppStore();
@@ -64,7 +65,12 @@ const Card = ({ car, callback, carsId }) => {
                 />
                 <span>Select For Compare</span>
               </div>
-              <Button isTransparent={true}>Compare</Button>
+              <ManualLink
+                href={`/compare/${carsId.join(",")}`}
+                isTransparent={true}
+              >
+                Compare
+              </ManualLink>
             </div>
           </div>
           <div className="row pt-2">
