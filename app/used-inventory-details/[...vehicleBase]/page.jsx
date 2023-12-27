@@ -9,6 +9,7 @@ import { useVehicles } from "@/hooks/actions/api/vehicles";
 import Gallery from "@/components/used-inventory-detail/gallery";
 import Table from "@/components/used-inventory-detail/table";
 import { SkeletonLoading } from "@/components/shared/loading";
+import Link from "@/components/shared/link"
 
 const Details = ({ params }) => {
   const { baseUrl, domain } = useAppStore();
@@ -29,10 +30,10 @@ const Details = ({ params }) => {
           <>
             <div className="w-full  d-flex justify-content-between align-items-center row">
               <div className={`col-lg-3 ${styles.head}`}>
-                <Button>
+                <Link href="/used-inventory">
                   <FaLongArrowAltLeft />
                   Back To Inventory
-                </Button>
+                </Link>
               </div>
               <div className="d-flex justify-content-end col-lg-9 mt-2 col-md-12">
                 <div
