@@ -33,7 +33,7 @@ export default function App(props) {
           return (
             <SwiperSlide>
               <Image
-              fill
+                fill
                 objectFit="responsive"
                 sizes="(min-width:740px) 674px, calc(95.48vw - 18px)"
                 src={`${baseSpecialImageUrl}${item.media_src}`}
@@ -58,7 +58,10 @@ export default function App(props) {
           return (
             <SwiperSlide>
               <Image
-                fill
+                width={200}
+                height={50}
+                priority={true}
+                quality={50}
                 src={`${baseSpecialImageUrl}${item.media_src}`}
                 key={index}
               />

@@ -10,6 +10,7 @@ import Gallery from "@/components/used-inventory-detail/gallery";
 import Table from "@/components/used-inventory-detail/table";
 import { SkeletonLoading } from "@/components/shared/loading";
 import Link from "@/components/shared/link";
+import RequestInformation from "@/components/used-inventory-detail/requestInformation";
 
 const Details = ({ params }) => {
   const { baseUrl, domain } = useAppStore();
@@ -25,6 +26,7 @@ const Details = ({ params }) => {
 
   return (
     <div className={styles.main}>
+      <RequestInformation />
       <Container>
         {single && data && (
           <>
@@ -95,14 +97,17 @@ const Details = ({ params }) => {
                 </strong>
                 <div className="row">
                   <div className={`col-12 ${styles.row} mt-2`}>
-                    <Button>
+                    <Button data-toggle="modal" data-target="#exampleModal">
                       <strong>Request Information</strong>
                     </Button>
                   </div>
                   <div className={`col-12 ${styles.row} mt-2`}>
-                    <Button isTransparent={true}>
+                    <Link
+                      isTransparent={true}
+                      href={`/finance-application?selected_vehicle=${single?.id}`}
+                    >
                       <strong>Book A Test Drive</strong>
-                    </Button>
+                    </Link>
                   </div>
                   <div className={`col-12 ${styles.row} mt-2`}>
                     <Button isTransparent={true}>
