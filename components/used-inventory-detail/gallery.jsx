@@ -54,7 +54,6 @@ export default function App(props) {
         className="mySwiper"
       >
         {images?.map((item, index) => {
-          console.log(item.media_src);
           return (
             <SwiperSlide>
               <img

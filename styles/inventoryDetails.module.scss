@@ -16,4 +16,16 @@
        }
     }
   }
+  .row{
+      height: 35px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .odd{
+      background: $gray-normal;
+    }
+    .even{
+      background: $gray-high;
+    }
 }

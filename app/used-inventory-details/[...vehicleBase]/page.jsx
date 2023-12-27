@@ -7,6 +7,7 @@ import { useAppStore } from "@/hooks/store";
 import useSWR from "swr";
 import { useVehicles } from "@/hooks/actions/api/vehicles";
 import Gallery from "@/components/used-inventory-detail/gallery";
+import Table from "@/components/used-inventory-detail/table";
 
 const Details = ({ params }) => {
   const { baseUrl, domain } = useAppStore();
@@ -57,7 +58,29 @@ const Details = ({ params }) => {
           <div className="col-lg-8">
             <Gallery {...data} />
           </div>
-          <div className="col-lg-4"></div>
+          <div className="col-lg-4">
+            <Table {...single} />
+            <strong className="row w-full mt-5">
+              <p className={`w-full text-center`} style={{ marginBottom: 0 }}>
+                $ {single?.special_price?.toLocaleString()}
+              </p>
+              <small className="w-full text-center">+ taxes and fees</small>
+            </strong>
+            <div className="row">
+              <div className={`col-12 ${styles.row} mt-1`}>
+                <Button>Request Information</Button>
+              </div>
+              <div className={`col-12 ${styles.row} mt-1`}>
+                <Button isTransparent={true}>Book A Test Drive</Button>
+              </div>
+              <div className={`col-12 ${styles.row} mt-1`}>
+                <Button isTransparent={true}>Apply For Financing</Button>
+              </div>
+              <div className={`col-12 ${styles.row} mt-1`}>
+                <Button isTransparent={true}>Print Window Sticker</Button>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </div>
