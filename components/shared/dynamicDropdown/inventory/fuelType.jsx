@@ -10,7 +10,7 @@ const FuelType = (props) => {
 
   const fuelType = useMemo(() => {
     if (Fuel_type) {
-      return Object.keys(Fuel_type);
+      return Fuel_type ;
     } else if (vehicleFuel_type_full) {
       return Object.keys(vehicleFuel_type_full);
     }
