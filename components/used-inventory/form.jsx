@@ -232,7 +232,9 @@ const Form = (props) => {
           {isLoading ? (
             <SkeletonLoading />
           ) : (
-            <Button onClick={() => formik.resetForm()}>Reset</Button>
+            <Button onClick={() => setAllObjects({ allObjects: {make:undefined} })}>
+              Reset
+            </Button>
           )}
         </div>
       </div>

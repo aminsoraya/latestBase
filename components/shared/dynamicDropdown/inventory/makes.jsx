@@ -9,7 +9,7 @@ const Models = (props) => {
   } = useAppStore();
 
   const makes = useMemo(() => {
-    if (make) {
+    if (make ) {
       return make;
     } else if (vehicleMake_full) {
       return Object.keys(vehicleMake_full);

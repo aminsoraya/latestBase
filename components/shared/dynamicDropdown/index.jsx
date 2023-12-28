@@ -65,7 +65,12 @@ const DynamicDropdown = (props) => {
       case DropDownTypes.inventory_makes:
         return (
           <Dynamic.InventoryMakesComponent
-            callback={(item) => setSelected(item)}
+            callback={(item) => {
+              setSelected(item);
+              setAllObjects({
+                allObjects: advancedSearchData.vehicleMake_full[item.key],
+              });
+            }}
           />
         );
       case DropDownTypes.inventory_minYear:

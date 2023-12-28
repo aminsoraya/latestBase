@@ -10,9 +10,9 @@ const EngineCylinder = (props) => {
 
   const engine = useMemo(() => {
     if (engine_cylinders) {
-      return Object.values(engine_cylinders);
+      return Object.keys(engine_cylinders);
     } else if (vehicleEngine_cylinders_full) {
-      return Object.values(vehicleEngine_cylinders_full);
+      return Object.keys(vehicleEngine_cylinders_full);
     }
     return [];
   }, [engine_cylinders, vehicleEngine_cylinders_full]);
