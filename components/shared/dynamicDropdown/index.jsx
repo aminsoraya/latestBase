@@ -4,10 +4,12 @@ import Input from "../input";
 import { useState, useEffect, useRef } from "react";
 import * as Dynamic from "./components";
 import { DropDownTypes } from "./enumerations";
+import { useAppStore } from "@/hooks/store";
 
 const DynamicDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(undefined);
+  const { setAllObjects, advancedSearchData } = useAppStore();
 
   const getItems = () => {
     switch (props.type) {
@@ -134,7 +136,14 @@ const DynamicDropdown = (props) => {
         );
       case DropDownTypes.inventory_model:
         return (
-          <Dynamic.InventoryModels callback={(item) => setSelected(item)} />
+          <Dynamic.InventoryModels
+            callback={(item) => {
+              setAllObjects({
+                allObjects: advancedSearchData.vehicleModel_full[item.key],
+              });
+              setSelected(item);
+            }}
+          />
         );
     }
   };

@@ -3,7 +3,8 @@ import { create } from "zustand";
 export const useAppStore = create((set) => ({
   domain: "",
   dealerData: [],
-  advancedSearchData:[],
+  advancedSearchData: [],
+  allObjects: [],
   baseUrl: "",
   baseImageUrl: "",
   baseSpecialImageUrl: "",
@@ -21,7 +22,11 @@ export const useAppStore = create((set) => ({
   setCurrentMenu: ({ currentMenu }) => {
     set({ currentMenu });
   },
-  setAdvancedSearchData:({advancedSearchData})=>{
-    set({advancedSearchData})
-  }
+  setAdvancedSearchData: ({ advancedSearchData }) => {
+    set({ advancedSearchData });
+  },
+  setAllObjects: ({ allObjects }) => {
+    console.log("setAllObjects",allObjects);
+    set({ allObjects });
+  },
 }));

@@ -6,12 +6,10 @@ import { useFormik } from "formik";
 import styles from "@/styles/usedInventory.module.scss";
 import { SkeletonLoading } from "@/components/shared/loading";
 import { useAppStore } from "@/hooks/store";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import { useVehicles } from "@/hooks/actions/api/vehicles";
 import { useEffect } from "react";
-import { usePostMethod } from "@/hooks/actions/api/post";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { OBJECT } from "swr/_internal";
 
 export const initialValues = {
   Fueltype: "",
@@ -42,7 +40,8 @@ const Form = (props) => {
   const pathName = usePathname();
 
   //base data
-  const { baseUrl, domain, setAdvancedSearchData } = useAppStore();
+  const { baseUrl, domain, setAdvancedSearchData, setAllObjects, allObjects } =
+    useAppStore();
 
   //dropdowns data
   let { data: advancedSearchData, isLoading } = useSWR(
