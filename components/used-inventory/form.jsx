@@ -167,7 +167,7 @@ const Form = (props) => {
           ) : (
             <DynamicDropdown
               placeholder="Any Transmission"
-              type={DropDownTypes.transmission}
+              type={DropDownTypes.inventory_Transmission}
               callback={(val) => formik.setFieldValue("Transmission", val)}
             />
           )}

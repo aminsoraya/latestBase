@@ -104,9 +104,9 @@ const DynamicDropdown = (props) => {
             callback={(item) => setSelected(item)}
           />
         );
-      case DropDownTypes.transmission:
+      case DropDownTypes.inventory_Transmission:
         return (
-          <Dynamic.TransmissionComponent
+          <Dynamic.InventoryTransmissionComponent
             callback={(item) => setSelected(item)}
           />
         );
