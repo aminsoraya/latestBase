@@ -12,7 +12,6 @@ const useInventoryUrl = () => {
   const [data, setData] = useState([]);
   const { baseUrl, domain } = useAppStore();
 
-  let mounted = true;
   useEffect(() => {
     setLoading(true);
 
@@ -24,7 +23,6 @@ const useInventoryUrl = () => {
       key.forEach((item) => {
         values[item] = params.get(item) || null;
       });
-
 
       await mutate(
         "inventory",
@@ -42,10 +40,6 @@ const useInventoryUrl = () => {
           console.log(error.message);
         });
     })();
-
-    return () => {
-      mounted = false;
-    };
   }, [searchParams, baseUrl, domain]);
 
   return { data, loading };

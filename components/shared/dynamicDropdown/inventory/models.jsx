@@ -10,7 +10,7 @@ const Models = (props) => {
 
   const models = useMemo(() => {
     if (model) {
-      return Object.keys(model);
+      return model;
     } else if (vehicleModel_full) {
       return Object.keys(vehicleModel_full);
     }

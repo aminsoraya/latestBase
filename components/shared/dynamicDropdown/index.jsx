@@ -76,7 +76,12 @@ const DynamicDropdown = (props) => {
       case DropDownTypes.inventory_minYear:
         return (
           <Dynamic.InventoryMinYearComponent
-            callback={(item) => setSelected(item)}
+            callback={(item) => {
+              setAllObjects({
+                allObjects: advancedSearchData.vehicleYear_full[item.key],
+              });
+              setSelected(item);
+            }}
           />
         );
       case DropDownTypes.inventory_maxYear:
