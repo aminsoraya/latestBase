@@ -5,13 +5,8 @@ import { useMemo } from "react";
 const BodyStyle = (props) => {
   const {
     allObjects: { bodyStyle },
-    allObjects,
     advancedSearchData: { vehicleBodyStyle_full },
-    advancedSearchData,
   } = useAppStore();
-
-  console.log("advancedSearchData ", advancedSearchData);
-  console.log("allObjects ", allObjects);
 
   const style = useMemo(() => {
     if (bodyStyle) {
@@ -22,7 +17,7 @@ const BodyStyle = (props) => {
     return [];
   }, [bodyStyle, vehicleBodyStyle_full]);
 
-  return bodyStyle
+  return style
     .sort((a, b) => a - b)
     .map((value, index) => (
       <span

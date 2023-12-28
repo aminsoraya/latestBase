@@ -26,7 +26,6 @@ export const useAppStore = create((set) => ({
     set({ advancedSearchData });
   },
   setAllObjects: ({ allObjects }) => {
-    console.log("setAllObjects",allObjects);
     set({ allObjects });
   },
 }));

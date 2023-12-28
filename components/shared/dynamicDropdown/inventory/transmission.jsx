@@ -9,7 +9,6 @@ const Transmission = (props) => {
   } = useAppStore();
 
   const transmission = useMemo(() => {
-    console.log("sdkjfhnsdkj");
     if (dynamicTransmission) {
       return dynamicTransmission;
     } else if (vehicleTransmission_full) {
