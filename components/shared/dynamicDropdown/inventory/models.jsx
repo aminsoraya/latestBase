@@ -1,14 +1,21 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
+import { useMemo } from "react";
 
 const Models = (props) => {
   const {
     advancedSearchData: { vehicleModel_full },
-    advancedSearchData,
+    allObjects: { model },
   } = useAppStore();
-console.log("advancedSearchData ", advancedSearchData);
 
-  const models = vehicleModel_full ? Object.keys(vehicleModel_full) : [];
+  const models = useMemo(() => {
+    if (model) {
+      return Object.keys(model);
+    } else if (vehicleModel_full) {
+      return Object.keys(vehicleModel_full);
+    }
+    return [];
+  }, [model, vehicleModel_full]);
 
   return models
     .sort((a, b) => b - a)
