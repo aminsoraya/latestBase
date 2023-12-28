@@ -1,16 +1,25 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
+import { useMemo } from "react";
 
-const InventoryEngines = (props) => {
+const EngineCylinder = (props) => {
   const {
+    allObjects: { engine_cylinders },
     advancedSearchData: { vehicleEngine_cylinders_full },
   } = useAppStore();
 
-  let engines = Object.keys(vehicleEngine_cylinders_full);
+  const engine = useMemo(() => {
+    if (engine_cylinders) {
+      return Object.values(engine_cylinders);
+    } else if (vehicleEngine_cylinders_full) {
+      return Object.values(vehicleEngine_cylinders_full);
+    }
+    return [];
+  }, [engine_cylinders, vehicleEngine_cylinders_full]);
 
-  return engines
-    ?.sort((a, b) => b - a)
-    ?.map((value, index) => (
+  return engine
+    .sort((a, b) => a - b)
+    .map((value, index) => (
       <span
         key={index}
         className={styles.item}
@@ -21,4 +30,4 @@ const InventoryEngines = (props) => {
     ));
 };
 
-export default InventoryEngines;
+export default EngineCylinder;

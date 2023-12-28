@@ -4,7 +4,9 @@ import styles from "@/styles/inventoryItems.module.scss";
 const Models = (props) => {
   const {
     advancedSearchData: { vehicleModel_full },
+    advancedSearchData,
   } = useAppStore();
+console.log("advancedSearchData ", advancedSearchData);
 
   const models = vehicleModel_full ? Object.keys(vehicleModel_full) : [];
 
