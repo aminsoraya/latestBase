@@ -1,16 +1,20 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
+import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
 
 const FuelType = (props) => {
   const {
     allObjects: { Fuel_type },
     advancedSearchData: { vehicleFuel_type_full },
   } = useAppStore();
+  let urlFuelType = GetSpecificField("Fueltype");
 
   const fuelType = useMemo(() => {
-    if (Fuel_type) {
-      return Fuel_type ;
+    if (urlFuelType) {
+      return vehicleFuel_type_full[urlFuelType].Fuel_type;
+    } else if (Fuel_type) {
+      return Fuel_type;
     } else if (vehicleFuel_type_full) {
       return Object.keys(vehicleFuel_type_full);
     }

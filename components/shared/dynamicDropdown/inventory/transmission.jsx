@@ -1,6 +1,7 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
+import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
 
 const Transmission = (props) => {
   const {
@@ -8,8 +9,12 @@ const Transmission = (props) => {
     advancedSearchData: { vehicleTransmission_full },
   } = useAppStore();
 
+  let urlTransmission = GetSpecificField("Transmission");
+
   const transmission = useMemo(() => {
-    if (dynamicTransmission) {
+    if (urlTransmission) {
+      return vehicleTransmission_full[urlTransmission].transmission;
+    } else if (dynamicTransmission) {
       return dynamicTransmission;
     } else if (vehicleTransmission_full) {
       return Object.keys(vehicleTransmission_full);
