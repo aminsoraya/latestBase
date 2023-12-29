@@ -185,7 +185,7 @@ const DynamicDropdown = (props) => {
   }, [selected]);
 
   const GetValue = () => {
-    if (selected?.type && selected.type == "Year")
+    if (selected?.type && selected.type == "YEAR")
       return (selected?.alias || props.placeholder).toString();
     return (selected?.alias || props.placeholder).toLocaleString();
   };

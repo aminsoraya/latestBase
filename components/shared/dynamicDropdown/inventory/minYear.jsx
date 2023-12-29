@@ -1,3 +1,4 @@
+import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
@@ -8,8 +9,12 @@ const MinYear = (props) => {
     advancedSearchData: { vehicleYear_full },
   } = useAppStore();
 
+  let urlYear = GetSpecificField("Minyear");
+
   const years = useMemo(() => {
-    if (year) {
+    if (urlYear) {
+      return vehicleYear_full[urlYear].year;
+    } else if (year) {
       return year;
     } else if (vehicleYear_full) {
       return Object.keys(vehicleYear_full);

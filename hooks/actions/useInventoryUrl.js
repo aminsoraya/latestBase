@@ -32,7 +32,6 @@ const useInventoryUrl = () => {
         )
       )
         .then((response) => {
-          console.log("response ", response);
           setData(response);
         })
         .finally(() => setLoading(false))
@@ -43,6 +42,12 @@ const useInventoryUrl = () => {
   }, [searchParams, baseUrl, domain]);
 
   return { data, loading };
+};
+
+export const GetSpecificField = (item) => {
+  const searchParams = useSearchParams();
+  let params = new URLSearchParams(searchParams);
+  return params.get(item);
 };
 
 export default useInventoryUrl;
