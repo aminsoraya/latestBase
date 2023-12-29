@@ -1,6 +1,7 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
+import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
 
 const BodyStyle = (props) => {
   const {
@@ -8,8 +9,12 @@ const BodyStyle = (props) => {
     advancedSearchData: { vehicleBodyStyle_full },
   } = useAppStore();
 
+  let urlBodyStyle = GetSpecificField("Bodystyle");
+
   const style = useMemo(() => {
-    if (bodyStyle) {
+    if (urlBodyStyle) {
+      return vehicleBodyStyle_full[urlBodyStyle].bodyStyle;
+    } else if (bodyStyle) {
       return bodyStyle;
     } else if (vehicleBodyStyle_full) {
       return Object.keys(vehicleBodyStyle_full);

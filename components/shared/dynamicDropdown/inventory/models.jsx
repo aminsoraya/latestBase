@@ -1,3 +1,4 @@
+import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
@@ -8,8 +9,11 @@ const Models = (props) => {
     allObjects: { model },
   } = useAppStore();
 
+  let urlModel = GetSpecificField("model");
   const models = useMemo(() => {
-    if (model) {
+    if (urlModel) {
+      return vehicleModel_full[urlModel].model;
+    } else if (model) {
       return model;
     } else if (vehicleModel_full) {
       return Object.keys(vehicleModel_full);
