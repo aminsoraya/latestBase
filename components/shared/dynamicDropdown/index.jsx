@@ -184,6 +184,12 @@ const DynamicDropdown = (props) => {
     }
   }, [selected]);
 
+  const GetValue = () => {
+    if (selected?.type && selected.type == "Year")
+      return (selected?.alias || props.placeholder).toString();
+    return (selected?.alias || props.placeholder).toLocaleString();
+  };
+
   return (
     <>
       <div className={styles.inputContainer} ref={divRef}>
@@ -192,9 +198,7 @@ const DynamicDropdown = (props) => {
             placeholder={props.placeholder}
             className="input-trasparent"
             onClick={() => setIsOpen((state) => !state)}
-            value={`${(
-              selected?.alias || props.placeholder
-            ).toLocaleString()} ${
+            value={`${GetValue()} ${
               (props.type == DropDownTypes.months && selected?.key) || ""
             }`}
           />

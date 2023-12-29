@@ -23,7 +23,9 @@ const MaxYear = (props) => {
       <span
         key={index}
         className={styles.item}
-        onClick={() => props.callback({ key: value, alias: value })}
+        onClick={() =>
+          props.callback({ key: value, alias: value, type: "YEAR" })
+        }
       >
         {value}
       </span>
