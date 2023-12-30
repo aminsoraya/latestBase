@@ -1,7 +1,7 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
-import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
+import { GetSpecificField, useField } from "@/hooks/actions/useInventoryUrl";
 
 const EngineCylinder = (props) => {
   const {
@@ -10,9 +10,13 @@ const EngineCylinder = (props) => {
   } = useAppStore();
 
   let urlEngineCylinder = GetSpecificField("EngineCylinder");
+  const { SetBaseField } = useField();
+  let baseField = GetSpecificField("Base");
 
   const engine = useMemo(() => {
-    if (urlEngineCylinder) {
+    if (baseField && baseField != "" && baseField == "engine") {
+      return Object.keys(vehicleEngine_cylinders_full);
+    } else if (urlEngineCylinder) {
       return vehicleEngine_cylinders_full[urlEngineCylinder].engine_cylinders;
     } else if (engine_cylinders) {
       return engine_cylinders;
@@ -28,7 +32,10 @@ const EngineCylinder = (props) => {
       <span
         key={index}
         className={styles.item}
-        onClick={() => props.callback({ key: value, alias: value })}
+        onClick={() => {
+          SetBaseField("Base", "engine");
+          props.callback({ key: value, alias: value });
+        }}
       >
         {value}
       </span>

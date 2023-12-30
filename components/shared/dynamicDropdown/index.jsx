@@ -157,7 +157,13 @@ const DynamicDropdown = (props) => {
       case DropDownTypes.inventory_Engine:
         return (
           <Dynamic.InventoryEngineComponent
-            callback={(item) => setSelected(item)}
+            callback={(item) => {
+              setAllObjects({
+                allObjects:
+                  advancedSearchData.vehicleEngine_cylinders_full[item.key],
+              });
+              setSelected(item);
+            }}
           />
         );
       case DropDownTypes.inventory_model:
