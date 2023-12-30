@@ -53,32 +53,6 @@ const UsedInventory = () => {
     setCars(data);
   }, [data]);
 
-  //infinite scroling
-  // useEffect(() => {
-  //   (async () => {
-  //     setInfiniteLoading(true);
-
-  //     let allFields = GetAllUrlFields();
-  //     let fieldsLength = Object.entries(allFields).length;
-
-  //     let fieldsData = fieldsLength == 1 ? initialValues : allFields;
-
-  //     await mutate(
-  //       "advanceSearch",
-  //       usePostMethod(
-  //         fieldsData,
-  //         `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
-  //       )
-  //     )
-  //       .then((data) => {
-  //         cars.length > 0
-  //           ? setCars((state) => [...state, ...data])
-  //           : setCars(data);
-  //       })
-  //       .finally(() => setInfiniteLoading(false));
-  //   })();
-  // }, [baseUrl, domain, currentPage]);
-
   const handleCarId = (id) => {
     const findedCarId = carsId.find((item) => item == id);
 
@@ -189,13 +163,14 @@ const UsedInventory = () => {
                     />
                   );
                 })}
-                {Array.from({ length: 6 }).map((_, index) => {
-                  return (
-                    <div className="col-4 mt-5" key={index} ref={ref}>
-                      <SkeletonCardHorizontalLoading />
-                    </div>
-                  );
-                })}
+                {cars.length < cars[0].fullSearchCount &&
+                  Array.from({ length: 6 }).map((_, index) => {
+                    return (
+                      <div className="col-4 mt-5" key={index} ref={ref}>
+                        <SkeletonCardHorizontalLoading />
+                      </div>
+                    );
+                  })}
               </>
             )}
           </div>

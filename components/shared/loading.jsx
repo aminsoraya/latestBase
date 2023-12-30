@@ -22,31 +22,31 @@ export const SkeletonCardHorizontalLoading = ({ height = 40 }) => {
       <div className={styles.cardBody}>
         <div className="row w-full">
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-12">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
           <div className="col-6">
-            <SkeletonLoading height={30} />
+            <SkeletonLoading height={height} />
           </div>
         </div>
       </div>

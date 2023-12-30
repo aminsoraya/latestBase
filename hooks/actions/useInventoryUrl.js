@@ -28,6 +28,8 @@ const useInventoryUrl = () => {
           let fieldsData =
             allUrlObjectLength == 0 ? initialValues : allUrlObjects;
 
+          console.log("fieldsData ", fieldsData);
+
           setUrlObjects(fieldsData);
 
           await mutate(
@@ -76,7 +78,7 @@ export const useField = () => {
     let params = new URLSearchParams(searchParams);
 
     const paramsObject = Object.fromEntries(
-      Array.from(params.keys()).map((key) => [key, params.get(key)])
+      Array.from(params.keys()).map((key) => [key, params.get(key) || null])
     );
 
     return paramsObject;
