@@ -1,17 +1,22 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
-import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
+import { GetSpecificField, useField } from "@/hooks/actions/useInventoryUrl";
 
 const FuelType = (props) => {
+  const { SetBaseField } = useField();
+
   const {
     allObjects: { Fuel_type },
     advancedSearchData: { vehicleFuel_type_full },
   } = useAppStore();
   let urlFuelType = GetSpecificField("Fueltype");
 
+  let baseField = GetSpecificField("Base");
   const fuelType = useMemo(() => {
-    if (urlFuelType) {
+    if (baseField && baseField != "" && baseField == "Fueltype") {
+      return Object.keys(vehicleFuel_type_full);
+    } else if (urlFuelType) {
       return vehicleFuel_type_full[urlFuelType].Fuel_type;
     } else if (Fuel_type) {
       return Fuel_type;
@@ -27,7 +32,10 @@ const FuelType = (props) => {
       <span
         key={index}
         className={styles.item}
-        onClick={() => props.callback({ key: value, alias: value })}
+        onClick={() => {
+          SetBaseField("Base", "Fueltype");
+          props.callback({ key: value, alias: value });
+        }}
       >
         {value}
       </span>

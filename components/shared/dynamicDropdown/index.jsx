@@ -122,13 +122,24 @@ const DynamicDropdown = (props) => {
       case DropDownTypes.inventory_Transmission:
         return (
           <Dynamic.InventoryTransmissionComponent
-            callback={(item) => setSelected(item)}
+            callback={(item) => {
+              setAllObjects({
+                allObjects:
+                  advancedSearchData.vehicleTransmission_full[item.key],
+              });
+              setSelected(item);
+            }}
           />
         );
       case DropDownTypes.inventory_FuelType:
         return (
           <Dynamic.InventoryFuelTypeComponent
-            callback={(item) => setSelected(item)}
+            callback={(item) => {
+              setAllObjects({
+                allObjects: advancedSearchData.vehicleFuel_type_full[item.key],
+              });
+              setSelected(item);
+            }}
           />
         );
       case DropDownTypes.inventory_MinKm:

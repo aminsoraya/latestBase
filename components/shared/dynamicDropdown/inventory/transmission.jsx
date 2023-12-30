@@ -1,7 +1,7 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
-import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
+import { GetSpecificField, useField } from "@/hooks/actions/useInventoryUrl";
 
 const Transmission = (props) => {
   const {
@@ -11,8 +11,12 @@ const Transmission = (props) => {
 
   let urlTransmission = GetSpecificField("Transmission");
 
+  const { SetBaseField } = useField();
+  let baseField = GetSpecificField("Base");
   const transmission = useMemo(() => {
-    if (urlTransmission) {
+    if (baseField && baseField != "" && baseField == "Transmission") {
+      return Object.keys(vehicleTransmission_full);
+    } else if (urlTransmission) {
       return vehicleTransmission_full[urlTransmission].transmission;
     } else if (dynamicTransmission) {
       return dynamicTransmission;
@@ -26,7 +30,10 @@ const Transmission = (props) => {
     <span
       key={index}
       className={styles.item}
-      onClick={() => props.callback({ key: value, alias: value })}
+      onClick={() => {
+        SetBaseField("Base", "Transmission");
+        props.callback({ key: value, alias: value });
+      }}
     >
       {value}
     </span>
