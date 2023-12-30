@@ -1,4 +1,4 @@
-import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
+import { GetSpecificField, useField } from "@/hooks/actions/useInventoryUrl";
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
@@ -10,9 +10,17 @@ const MaxYear = (props) => {
   } = useAppStore();
 
   let urlYear = GetSpecificField("Maxyear");
+  const { SetBaseField } = useField();
+  let baseField = GetSpecificField("Base");
 
   const years = useMemo(() => {
-    if (urlYear) {
+    if (
+      baseField &&
+      baseField != "" &&
+      (baseField == "Minyear" || baseField == "Maxyear")
+    ) {
+      return Object.keys(vehicleYear_full);
+    } else if (urlYear) {
       return vehicleYear_full[urlYear].year;
     } else if (year) {
       return year;
@@ -28,9 +36,10 @@ const MaxYear = (props) => {
       <span
         key={index}
         className={styles.item}
-        onClick={() =>
-          props.callback({ key: value, alias: value, type: "YEAR" })
-        }
+        onClick={() => {
+          SetBaseField("Base", "Maxyear");
+          props.callback({ key: value, alias: value, type: "YEAR" });
+        }}
       >
         {value}
       </span>
