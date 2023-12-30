@@ -8,7 +8,7 @@ export default function CustomLink({ href, children, isTransparent = false }) {
     <Link
       href={href}
       className={`${isTransparent ? buttonStyles.transparent : styles.button}`}
-      style={{width:"100%",height:"100%",textAlign:"center",display:"block"}}
+      style={{width:"100%",height:"100%",textAlign:"center",display:"flex",justifyContent:"center"}}
     >
       {children}
     </Link>

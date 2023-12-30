@@ -12,26 +12,25 @@ import { useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 export const initialValues = {
-  Fueltype: "",
-  Bodystyle: "",
-  EngineCylinder: "",
-  Maxyear: "",
-  MinPrice: "",
-  MaxPrice: "",
+  fuel_type: "",
+  body_style: "",
+  engine_cylinders: "",
+  year_start: "",
+  price_low: "",
+  price_high: "",
   odometer_type: "",
   make: "",
   model: "",
-  Transmission: "",
+  transmission: "",
   // drive_train: "",
-  Doors: "",
-  Interior_color: "",
-  Exteriorcolor: "",
+  doors: "",
+  Exterior_color: "",
   // sold: "",
   // is_coming_soon: "",
   // is_it_special: "",
-  Minyear: "",
-  Minodometer: "",
-  Maxodometer: "",
+  year_end: "",
+  odometer_low: "",
+  odometer_high: "",
 };
 
 const Form = (props) => {
@@ -89,7 +88,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Min Year"
               type={DropDownTypes.inventory_minYear}
-              callback={(val) => formik.setFieldValue("Minyear", val)}
+              callback={(val) => formik.setFieldValue("year_start", val)}
             />
           )}
         </div>
@@ -100,7 +99,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Max Year"
               type={DropDownTypes.inventory_maxYear}
-              callback={(val) => formik.setFieldValue("Maxyear", val)}
+              callback={(val) => formik.setFieldValue("year_end", val)}
             />
           )}
         </div>
@@ -122,7 +121,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Body Style"
               type={DropDownTypes.inventory_bodyStyle}
-              callback={(val) => formik.setFieldValue("Bodystyle", val)}
+              callback={(val) => formik.setFieldValue("body_style", val)}
             />
           )}
         </div>
@@ -135,7 +134,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Color"
               type={DropDownTypes.inventory_Color}
-              callback={(val) => formik.setFieldValue("Exteriorcolor", val)}
+              callback={(val) => formik.setFieldValue("Exterior_color", val)}
             />
           )}
         </div>
@@ -146,7 +145,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Min Price"
               type={DropDownTypes.inventory_MinPrice}
-              callback={(val) => formik.setFieldValue("MinPrice", val)}
+              callback={(val) => formik.setFieldValue("price_low", val)}
             />
           )}
         </div>
@@ -157,7 +156,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Max Price"
               type={DropDownTypes.inventory_MaxPrice}
-              callback={(val) => formik.setFieldValue("MaxPrice", val)}
+              callback={(val) => formik.setFieldValue("price_high", val)}
             />
           )}
         </div>
@@ -168,7 +167,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Transmission"
               type={DropDownTypes.inventory_Transmission}
-              callback={(val) => formik.setFieldValue("Transmission", val)}
+              callback={(val) => formik.setFieldValue("transmission", val)}
             />
           )}
         </div>
@@ -191,7 +190,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Fuel Type"
               type={DropDownTypes.inventory_FuelType}
-              callback={(val) => formik.setFieldValue("Fueltype", val)}
+              callback={(val) => formik.setFieldValue("fuel_type", val)}
             />
           )}
         </div>
@@ -202,7 +201,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Min Km"
               type={DropDownTypes.inventory_MinKm}
-              callback={(val) => formik.setFieldValue("Minodometer", val)}
+              callback={(val) => formik.setFieldValue("odometer_low", val)}
             />
           )}
         </div>
@@ -213,7 +212,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Max Km"
               type={DropDownTypes.inventory_MaxKm}
-              callback={(val) => formik.setFieldValue("Maxodometer", val)}
+              callback={(val) => formik.setFieldValue("odometer_high", val)}
             />
           )}
         </div>
@@ -224,7 +223,7 @@ const Form = (props) => {
             <DynamicDropdown
               placeholder="Any Engine"
               type={DropDownTypes.inventory_Engine}
-              callback={(val) => formik.setFieldValue("EngineCylinder", val)}
+              callback={(val) => formik.setFieldValue("engine_cylinders", val)}
             />
           )}
         </div>
@@ -232,7 +231,9 @@ const Form = (props) => {
           {isLoading ? (
             <SkeletonLoading />
           ) : (
-            <Button onClick={() => setAllObjects({ allObjects: {make:undefined} })}>
+            <Button
+              onClick={() => setAllObjects({ allObjects: { make: undefined } })}
+            >
               Reset
             </Button>
           )}

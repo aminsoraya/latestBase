@@ -29,13 +29,11 @@ const cardDisplayType = {
 };
 const UsedInventory = () => {
   //base data
-  const { setCurrentMenu, baseUrl, domain } = useAppStore();
+  const { setCurrentMenu } = useAppStore();
   const [displayType, setDisplayType] = useState(cardDisplayType.Horizontal);
   const [carsId, setCarsId] = useState([]);
 
-  const { loading, data, setCurrentPage } = useInventoryUrl();
-
-  const [cars, setCars] = useState([]);
+  const { loading, data: cars, setCurrentPage } = useInventoryUrl();
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -48,10 +46,6 @@ const UsedInventory = () => {
   useEffect(() => {
     setCurrentMenu({ currentMenu: "/used-inventory" });
   }, []);
-
-  useEffect(() => {
-    setCars(data);
-  }, [data]);
 
   const handleCarId = (id) => {
     const findedCarId = carsId.find((item) => item == id);

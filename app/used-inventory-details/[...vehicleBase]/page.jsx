@@ -100,7 +100,8 @@ const Details = ({ params }) => {
             <div className="row mb-3">
               <div className="col-9">
                 <h5>Description</h5>
-                <span style={{fontSize:"13px"}}
+                <span
+                  style={{ fontSize: "13px"  }}
                   dangerouslySetInnerHTML={{ __html: single?.comment }}
                 ></span>
               </div>
