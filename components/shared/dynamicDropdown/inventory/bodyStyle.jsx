@@ -15,7 +15,7 @@ const BodyStyle = (props) => {
 
   let baseField = GetSpecificField("Base");
   const style = useMemo(() => {
-    if (baseField && baseField != "") {
+    if (baseField && baseField != "" && baseField == "bodyStyle") {
       return Object.keys(vehicleBodyStyle_full);
     } else if (urlBodyStyle) {
       return vehicleBodyStyle_full[urlBodyStyle].bodyStyle;
@@ -34,7 +34,6 @@ const BodyStyle = (props) => {
         key={index}
         className={styles.item}
         onClick={() => {
-          //internal check for conditions
           SetBaseField("Base", "bodyStyle");
           props.callback({ key: value, alias: value });
         }}
