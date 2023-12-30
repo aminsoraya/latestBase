@@ -28,21 +28,17 @@ const useInventoryUrl = () => {
           let fieldsData =
             allUrlObjectLength == 0 ? initialValues : allUrlObjects;
 
-          console.log("fieldsData ", fieldsData);
-
           setUrlObjects(fieldsData);
 
           await mutate(
             "inventory",
             usePostMethod(
               fieldsData,
-              `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
+              `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=1&limit=10`
             )
           )
             .then((data) => {
-              currentPage > 1
-                ? setData((state) => [...state, ...data])
-                : setData(data);
+              setData(data);
             })
             .finally(() => setLoading(false))
             .catch((error) => {
@@ -50,7 +46,28 @@ const useInventoryUrl = () => {
             });
         })();
       }
-  }, [searchParams, baseUrl, domain, currentPage]);
+  }, [searchParams, baseUrl, domain]);
+
+  //when current page increased
+  useEffect(() => {
+    let allUrlObjects = GetAllUrlFields();
+    (async () => {
+      setLoading(true);
+
+      await mutate(
+        "inventory",
+        usePostMethod(
+          allUrlObjects,
+          `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
+        )
+      )
+        .then((data) => setData((state) => [...state, ...data]))
+        .finally(() => setLoading(false))
+        .catch((error) => {
+          console.log(error.message);
+        });
+    })();
+  }, [baseUrl, domain, currentPage]);
 
   return { data, loading, setCurrentPage };
 };
