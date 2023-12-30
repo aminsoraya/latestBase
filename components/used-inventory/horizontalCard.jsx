@@ -53,7 +53,7 @@ const Card = ({ car, callback, carsId }) => {
         <div className="px-2 pb-4 pt-2">
           <div className="row pt-2 ">
             <div className={`col-12 ${styles.compare}`}>
-              <div>
+              <div className="col-6">
                 <input
                   type="checkbox"
                   onChange={() => callback(car.id)}
@@ -65,12 +65,14 @@ const Card = ({ car, callback, carsId }) => {
                 />
                 <span>Select For Compare</span>
               </div>
-              <ManualLink
-                href={`/compare/${carsId.join(",")}`}
-                isTransparent={true}
-              >
-                Compare
-              </ManualLink>
+              <div className="col-6">
+                <ManualLink
+                  href={`/compare/${carsId.join(",")}`}
+                  isTransparent={true}
+                >
+                  Compare
+                </ManualLink>
+              </div>
             </div>
           </div>
           <div className="row pt-2">

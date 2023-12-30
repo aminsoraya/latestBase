@@ -6,11 +6,9 @@ import { GetSpecificField, useField } from "@/hooks/actions/useInventoryUrl";
 const Color = (props) => {
   const {
     allObjects: { exterior_color },
-    allObjects,
     advancedSearchData: { vehicleexterior_color_full },
   } = useAppStore();
 
-  console.log("allObjects ", allObjects);
   let urlExteriorColor = GetSpecificField("Exteriorcolor");
 
   const { SetBaseField } = useField();

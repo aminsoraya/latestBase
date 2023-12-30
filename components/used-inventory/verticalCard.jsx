@@ -6,9 +6,22 @@ import Image from "next/image";
 import staticImg from "@/public/img/default-inventory-image-car-med.png";
 import { IoIosSpeedometer } from "react-icons/io";
 import ManualLink from "@/components/shared/link";
+import { useState, useEffect } from "react";
 
 const Card = ({ car, callback, carsId }) => {
   const { baseSpecialImageUrl } = useAppStore();
+
+  const [makeSlug, setMakeSlug] = useState({
+    make: "",
+    model: "",
+  });
+
+  useEffect(() => {
+    setMakeSlug(() => ({
+      make: car?.Vehicle?.make?.replaceAll(/-/g, "").toLowerCase(),
+      model: car?.Vehicle?.model?.replaceAll(/-/g, "").toLowerCase(),
+    }));
+  }, []);
 
   return (
     <div className={`${styles.card} row mt-4`}>
@@ -33,7 +46,7 @@ const Card = ({ car, callback, carsId }) => {
           </div>
           <div className="px-2 pb-4 pt-2">
             <div className={`col-12 ${styles.compare}`}>
-              <div>
+              <div className="col-8">
                 <input
                   type="checkbox"
                   onClick={() => callback(car.id)}
@@ -45,9 +58,14 @@ const Card = ({ car, callback, carsId }) => {
                 />
                 <span>Select For Compare</span>
               </div>
-              <ManualLink href={`/compare/${carsId.join(",")}`} isTransparent={true}>
-                Compare
-              </ManualLink>
+              <div className="col-4">
+                <ManualLink
+                  href={`/compare/${carsId.join(",")}`}
+                  isTransparent={true}
+                >
+                  Compare
+                </ManualLink>
+              </div>
             </div>
           </div>
         </div>
@@ -150,13 +168,19 @@ const Card = ({ car, callback, carsId }) => {
           <div className={`col-4`}>
             <div className={`row ${styles.items} mt-2`}>
               <div className={`col-12 mt-2 ${styles.bottonRight}`}>
-                <Button>View Details</Button>
+                <div style={{ width: "150px", height: "30px" }}>
+                  <ManualLink
+                    href={`/used-inventory-details/${car?.Vehicle?.model_year}-${makeSlug?.make}-${makeSlug?.model}-${car?.id}`}
+                  >
+                    View Details
+                  </ManualLink>
+                </div>
               </div>
               <div className={`col-12 mt-2 ${styles.bottonRight}`}>
-                <Button>Contact Us</Button>
+                <Button style={{ color: "white" }}>Contact Us</Button>
               </div>
               <div className={`col-12 mt-2 ${styles.bottonRight}`}>
-                <Button>Text Us Now</Button>
+                <Button style={{ color: "white" }}>Text Us Now</Button>
               </div>
             </div>
           </div>
