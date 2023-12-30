@@ -93,7 +93,12 @@ const DynamicDropdown = (props) => {
       case DropDownTypes.inventory_bodyStyle:
         return (
           <Dynamic.InventoryBodyStyleComponent
-            callback={(item) => setSelected(item)}
+            callback={(item) => {
+              setAllObjects({
+                allObjects: advancedSearchData.vehicleBodyStyle_full[item.key],
+              });
+              setSelected(item);
+            }}
           />
         );
       case DropDownTypes.inventory_Color:

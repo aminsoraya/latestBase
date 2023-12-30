@@ -152,8 +152,10 @@ const UsedInventory = () => {
             </div>
           </>
         )}
+
         {displayType == cardDisplayType.Horizontal && (
           <div className={`row w-100 mb-5 `}>
+            {/* horinontal loading */}
             {loading && (
               <>
                 <div className="col-6 mt-5" style={{ minHeight: "40px" }}>

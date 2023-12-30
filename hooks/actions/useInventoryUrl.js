@@ -44,6 +44,29 @@ const useInventoryUrl = () => {
   return { data, loading };
 };
 
+export const useField = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathName = usePathname();
+
+  const SetBaseField = (fieldName, fieldValue) => {
+    let params = new URLSearchParams(searchParams);
+
+    let findedBase = false;
+    for (const key of params.keys()) {
+      findedBase = params.has(key);
+    }
+
+    if (!findedBase) {
+      params.set(fieldName, fieldValue);
+      router.replace(`${pathName}?${params.toString()}`, { scroll: false });
+    }
+  };
+
+  return {
+    SetBaseField,
+  };
+};
 export const GetSpecificField = (item) => {
   const searchParams = useSearchParams();
   let params = new URLSearchParams(searchParams);

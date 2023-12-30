@@ -1,7 +1,7 @@
 import { useAppStore } from "@/hooks/store";
 import styles from "@/styles/inventoryItems.module.scss";
 import { useMemo } from "react";
-import { GetSpecificField } from "@/hooks/actions/useInventoryUrl";
+import { GetSpecificField, useField } from "@/hooks/actions/useInventoryUrl";
 
 const BodyStyle = (props) => {
   const {
@@ -11,8 +11,13 @@ const BodyStyle = (props) => {
 
   let urlBodyStyle = GetSpecificField("Bodystyle");
 
+  const { SetBaseField } = useField();
+
+  let baseField = GetSpecificField("Base");
   const style = useMemo(() => {
-    if (urlBodyStyle) {
+    if (baseField && baseField != "") {
+      return Object.keys(vehicleBodyStyle_full);
+    } else if (urlBodyStyle) {
       return vehicleBodyStyle_full[urlBodyStyle].bodyStyle;
     } else if (bodyStyle) {
       return bodyStyle;
@@ -28,7 +33,11 @@ const BodyStyle = (props) => {
       <span
         key={index}
         className={styles.item}
-        onClick={() => props.callback({ key: value, alias: value })}
+        onClick={() => {
+          //internal check for conditions
+          SetBaseField("Base", "bodyStyle");
+          props.callback({ key: value, alias: value });
+        }}
       >
         {value}
       </span>
