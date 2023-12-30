@@ -2,46 +2,55 @@ import { initialValues } from "@/components/used-inventory/form";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { usePostMethod } from "./api/post";
-import { OBJECT } from "swr/_internal";
 import { mutate } from "swr";
 import { useAppStore } from "../store";
 
 const useInventoryUrl = () => {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const { baseUrl, domain } = useAppStore();
+  const { GetAllUrlFields } = useField();
+  const [urlObjects, setUrlObjects] = useState();
 
   useEffect(() => {
-    setLoading(true);
+    let allUrlObjects = GetAllUrlFields();
+    let allUrlObjectLength = Object.entries(allUrlObjects).length;
 
-    (async () => {
-      let key = OBJECT.keys(initialValues);
-      let params = new URLSearchParams(searchParams);
+    //it means except Base field
+    if (allUrlObjectLength != 1)
+      if (allUrlObjects != urlObjects) {
+        (async () => {
+          setUrlObjects(urlObjects);
+          setLoading(true);
 
-      var values = {};
-      key.forEach((item) => {
-        values[item] = params.get(item) || null;
-      });
+          let fieldsData =
+            allUrlObjectLength == 0 ? initialValues : allUrlObjects;
 
-      await mutate(
-        "inventory",
-        usePostMethod(
-          values,
-          `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=1&limit=10`
-        )
-      )
-        .then((response) => {
-          setData(response);
-        })
-        .finally(() => setLoading(false))
-        .catch((error) => {
-          console.log(error.message);
-        });
-    })();
-  }, [searchParams, baseUrl, domain]);
+          setUrlObjects(fieldsData);
 
-  return { data, loading };
+          await mutate(
+            "inventory",
+            usePostMethod(
+              fieldsData,
+              `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
+            )
+          )
+            .then((data) => {
+              currentPage > 1
+                ? setData((state) => [...state, ...data])
+                : setData(data);
+            })
+            .finally(() => setLoading(false))
+            .catch((error) => {
+              console.log(error.message);
+            });
+        })();
+      }
+  }, [searchParams, baseUrl, domain, currentPage]);
+
+  return { data, loading, setCurrentPage };
 };
 
 export const useField = () => {
@@ -63,7 +72,18 @@ export const useField = () => {
     }
   };
 
+  const GetAllUrlFields = () => {
+    let params = new URLSearchParams(searchParams);
+
+    const paramsObject = Object.fromEntries(
+      Array.from(params.keys()).map((key) => [key, params.get(key)])
+    );
+
+    return paramsObject;
+  };
+
   return {
+    GetAllUrlFields,
     SetBaseField,
   };
 };

@@ -1,15 +1,12 @@
 "use client";
 import styles from "@/styles/usedInventory.module.scss";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppStore } from "@/hooks/store";
 import Container from "@/components/shared/container";
-import { mutate } from "swr";
-import { initialValues } from "@/components/used-inventory/form";
 import {
   SkeletonCardHorizontalLoading,
   SkeletonLoading,
 } from "@/components/shared/loading";
-import { usePostMethod } from "@/hooks/actions/api/post";
 import { PiSquareSplitVerticalFill } from "react-icons/pi";
 import { PiSquareSplitHorizontalFill } from "react-icons/pi";
 import dynamic from "next/dynamic";
@@ -35,9 +32,9 @@ const UsedInventory = () => {
   const { setCurrentMenu, baseUrl, domain } = useAppStore();
   const [displayType, setDisplayType] = useState(cardDisplayType.Horizontal);
   const [carsId, setCarsId] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const { loading, data } = useInventoryUrl();
-  const [infiniteLoading, setInfiniteLoading] = useState();
+
+  const { loading, data, setCurrentPage } = useInventoryUrl();
+
   const [cars, setCars] = useState([]);
 
   const { ref, inView } = useInView({
@@ -51,29 +48,36 @@ const UsedInventory = () => {
   useEffect(() => {
     setCurrentMenu({ currentMenu: "/used-inventory" });
   }, []);
+
   useEffect(() => {
     setCars(data);
   }, [data]);
 
   //infinite scroling
-  useEffect(() => {
-    (async () => {
-      setInfiniteLoading(true);
-      await mutate(
-        "advanceSearch",
-        usePostMethod(
-          initialValues,
-          `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
-        )
-      )
-        .then((data) => {
-          cars.length > 0
-            ? setCars((state) => [...state, ...data])
-            : setCars(data);
-        })
-        .finally(() => setInfiniteLoading(false));
-    })();
-  }, [baseUrl, domain, currentPage]);
+  // useEffect(() => {
+  //   (async () => {
+  //     setInfiniteLoading(true);
+
+  //     let allFields = GetAllUrlFields();
+  //     let fieldsLength = Object.entries(allFields).length;
+
+  //     let fieldsData = fieldsLength == 1 ? initialValues : allFields;
+
+  //     await mutate(
+  //       "advanceSearch",
+  //       usePostMethod(
+  //         fieldsData,
+  //         `${baseUrl}/api/dealership/advance/search/vehicles/${domain}?page=${currentPage}&limit=10`
+  //       )
+  //     )
+  //       .then((data) => {
+  //         cars.length > 0
+  //           ? setCars((state) => [...state, ...data])
+  //           : setCars(data);
+  //       })
+  //       .finally(() => setInfiniteLoading(false));
+  //   })();
+  // }, [baseUrl, domain, currentPage]);
 
   const handleCarId = (id) => {
     const findedCarId = carsId.find((item) => item == id);
